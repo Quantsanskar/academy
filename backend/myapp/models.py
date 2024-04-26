@@ -3,7 +3,7 @@ from django.template.defaultfilters import slugify
 from django import forms
 
 
-class Aadmin(models.Model):
+class Admin(models.Model):
     name = models.CharField(max_length=100)
     username = models.CharField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
@@ -17,6 +17,7 @@ class Aadmin(models.Model):
 
     class Meta:
         ordering = ("created_at",)
+
 
 class MainStudent(models.Model):
     name = models.CharField(max_length=100)
@@ -32,5 +33,3 @@ class MainStudent(models.Model):
     totalclass = models.IntegerField()
     attclass = models.IntegerField()
     teachers = models.CharField(max_length=100)
-
-    

@@ -1,11 +1,10 @@
 from django.urls import path
 from .views import (
-    AadminListAPIView,
+    AdminListAPIView,
     MainStudentListAPIView,
-    
 )
-urlpatterns = [
-    path("admin", AadminListAPIView.as_view(), name="admin"),
-    path("mainstudent", MainStudentListAPIView.as_view(), name="mainstudent"),
 
+urlpatterns = [
+    path("admin", AdminListAPIView.as_view(), name="Admin"),
+    path("mainstudent", MainStudentListAPIView.as_view(), name="mainstudent"),
 ]

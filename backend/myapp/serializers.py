@@ -1,10 +1,12 @@
 from rest_framework import serializers
-from .models import Aadmin, MainStudent
+from .models import Admin, MainStudent
+
 
 class AdminSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Aadmin
+        model = Admin
         fields = "__all__"
+
 
 class MainStudentSerializer(serializers.ModelSerializer):
     class Meta:
