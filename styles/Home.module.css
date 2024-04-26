@@ -1,0 +1,513 @@
+/* Header Background */
+.headerBackground {
+    top: 0%;
+    left: 0%;
+    position: fixed;
+    width: 100%;
+    height: 10%;
+    /* Adjust height as needed */
+    background: linear-gradient(to right, #333, #222);
+
+    z-index: 999;
+    /* Ensure it's behind the logo */
+}
+
+/* Logo */
+.header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #fff;
+    /* White background for contrast */
+    padding: 10px 20px;
+    /* Add padding for spacing */
+}
+
+.headerLogo {
+    padding: 10px;
+    margin-top: 20px;
+    /* Adjust margin top as needed */
+    margin-left: 20px;
+    /* Add margin left for spacing */
+    width: auto;
+    height: 50px;
+    /* Adjust height as needed */
+    position: fixed;
+    z-index: 1001;
+    /* Ensure logo is above navbar */
+}
+
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(to right, #333, #222);
+    /* Gradient background */
+    position: fixed;
+    width: 100%;
+    /* Adjust width as needed */
+    /* top: 0; */
+    left: 50%;
+    /* Center the navbar horizontally */
+    padding: 20px;
+    margin-top: 20px;
+    transform: translateX(-50%);
+    /* Center the navbar horizontally */
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Add shadow for depth */
+    transition: background-color 0.3s, box-shadow 0.3s, width 0.3s;
+    /* Smooth transition */
+}
+
+.navList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navList li {
+    margin-right: 10px;
+}
+
+.navList li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 30px;
+    /* Increase padding for better touchability */
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transitions */
+}
+
+.navList li a:hover {
+    background-color: #555;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 120px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+    transition: opacity 0.3s, transform 0.3s;
+    /* Smooth transitions */
+    transform-origin: top;
+    top: 100%;
+}
+
+.dropdown:hover .dropdownContent {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdownContent a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdownContent a:hover {
+    background-color: #555;
+}
+
+
+/* Institute Logo and Tagline */
+.instituteInfo {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    /* Add margin top to create space below navbar */
+}
+
+.instituteLogo {
+    margin-top: 80px;
+    width: 50%;
+    height: auto;
+    /* Adjust size as needed */
+}
+
+.tagline {
+    margin-left: 20px;
+    font-family: cursive;
+    /* Use a sans-serif font */
+    font-size: 1.5em;
+    /* Larger font size */
+    font-weight: bold;
+    /* Bold font weight */
+    color: #3f2d33;
+    /* Pink color */
+    text-transform: uppercase;
+    /* Uppercase text */
+    animation: neonGlow 1.5s infinite alternate;
+    /* Neon glow animation */
+}
+
+/* Neon glow animation */
+@keyframes neonGlow {
+    0% {
+        text-shadow: 0 0 10px #3f2d33, 0 0 20px #3f2d33, 0 0 30px #3f2d33, 0 0 40px #3f2d33, 0 0 70px #3f2d33, 0 0 80px #3f2d33, 0 0 100px #3f2d33, 0 0 150px #3f2d33;
+        color: #3f2d33;
+    }
+
+    100% {
+        text-shadow: none;
+        color: #3f2d33;
+    }
+}
+
+/* Admission Pamphlets Section */
+.admissionPamphlets {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 100px;
+    /* Adjust as needed */
+}
+
+/* Left: Animated Admission Templates */
+.admissionTemplates {
+    flex: 1;
+}
+
+.admissionImage {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Right: Attractive Container with Service Intro */
+.servicesContainer {
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f0f0;
+    /* Light background color */
+    border-radius: 10px;
+}
+
+.servicesContainer h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.servicesContainer p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.aboutUsButton {
+    background-color: #4CAF50;
+    /* Green background color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.aboutUsButton:hover {
+    background-color: #45a049;
+    /* Darker green on hover */
+}
+
+
+
+
+
+/* Why Choose A & G Section */
+.whyChoose {
+    margin-top: 0px;
+    /* Adjust margin top as needed */
+    text-align: center;
+}
+
+.whyChoose h2 {
+    font-size: 3em;
+    color: #252525;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.whyChoose h2.visible {
+    opacity: 1;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.feature {
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.animated {
+    animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Our Programs Section */
+.programsSection {
+    margin-top: 10px;
+    transform: translateY(50px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.programsHeadingContainer {
+    width: 100%;
+    text-align: center;
+    font-family: cursive;
+    font-size: 35px;
+}
+
+.programsHeading {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.programsContainer {
+    width: 90%;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #252525;
+    /* Dark grey */
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.programsDescription {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.exploreButton {
+    background-color: #fff;
+    color: #252525;
+    /* Dark grey */
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.exploreButton:hover {
+    background-color: #252525;
+    /* Dark grey */
+    color: #fff;
+}
+
+.studentJourney {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+.journeyImage {
+    width: 100%;
+    height: 100%;
+    background-image: url('/journey-map-02_2x.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.slogan {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    text-align: center;
+}
+
+.slogan p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.slogan p p {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.gradientLine {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, #ff512f, #f09819);
+    transform: rotate(-3deg);
+}
+
+/* Our Testblazers */
+.trailBlazersSection {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.sectionHeading {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+.profilesContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.profile {
+    width: 300px;
+    margin-bottom: 50px;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.profile:hover {
+    transform: translateY(-5px);
+}
+
+.profileImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.profileDetails {
+    padding: 20px;
+}
+
+.profileDetails h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.profileDetails p {
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.feedback {
+    font-style: italic;
+    color: #777;
+    font-size: 1.5em;
+}
+
+/* CSS Styles for Footer */
+
+.footer {
+    background-color: #333;
+    padding: 50px 0;
+}
+
+.footerContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contactUs,
+.policies,
+.license {
+    flex: 1;
+    padding: 0 20px;
+    color: #fff;
+}
+
+.contactUs h3,
+.policies h3,
+.license h3 {
+    font-size:
+        1.5em;
+    margin-bottom: 20px;
+}
+
+.contactUs p,
+.policies ul {
+    margin-bottom: 10px;
+}
+
+.policies ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.policies ul li {
+    margin-bottom: 5px;
+}
+
+.policies ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.policies ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Copyright Line */
+.copyright {
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+
+}
+
+.copyright p {
+    font-size: 14px;
+    margin-top: 90px;
+    margin-bottom: 0;
+    color: #fff;
+}
