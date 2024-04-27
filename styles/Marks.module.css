@@ -1,0 +1,45 @@
+/* Marks.css */
+
+.marksContainer {
+    padding: 20px;
+}
+
+.chooseClass {
+    margin-bottom: 20px;
+}
+
+.chooseClass label {
+    margin-right: 10px;
+}
+
+.chooseClass select {
+    padding: 5px;
+}
+
+.marksList {
+    overflow-x: auto;
+}
+
+.marksList table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.marksList th,
+.marksList td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.marksList th {
+    background-color: #f2f2f2;
+}
+
+.marksList tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.marksList tr:hover {
+    background-color: #ddd;
+}

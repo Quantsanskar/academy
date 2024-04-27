@@ -1,0 +1,35 @@
+/* Attendance.module.css */
+
+.attendanceContainer {
+    padding: 20px;
+}
+
+.attendanceTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.attendanceTable th,
+.attendanceTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.attendanceTable th {
+    background-color: #f2f2f2;
+}
+
+.attendanceTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.attendanceTable tr:hover {
+    background-color: #ddd;
+}
+
+.attendanceMessage {
+    margin-top: 10px;
+    font-weight: bold;
+}

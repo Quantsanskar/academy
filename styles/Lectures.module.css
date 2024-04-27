@@ -1,0 +1,41 @@
+/* Lectures.module.css */
+
+.lecturesContainer {
+    padding: 20px;
+}
+
+.chooseClass {
+    margin-bottom: 20px;
+}
+
+.chooseClass label {
+    margin-right: 10px;
+}
+
+.chooseClass select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.chooseClass select:focus {
+    outline: none;
+}
+
+.lectureList {
+    margin-top: 20px;
+}
+
+.lectureItem {
+    margin-top: 10px;
+}
+
+.lectureItem h5 {
+    margin: 0;
+}
+
+.lectureItem video {
+    width: 100%;
+    border-radius: 5px;
+}

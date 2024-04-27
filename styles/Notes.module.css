@@ -1,0 +1,93 @@
+/* Notes.module.css */
+
+.notesContainer {
+    padding: 20px;
+}
+
+.searchBar {
+    margin-bottom: 20px;
+}
+
+.searchBar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+.searchBar input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.searchHint {
+    margin-top: 10px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.chooseClass {
+    margin-bottom: 20px;
+}
+
+.chooseClass label {
+    margin-right: 10px;
+}
+
+.chooseClass select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.chooseClass select:focus {
+    outline: none;
+}
+
+.notesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.noteItem {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.noteItem:hover {
+    transform: translateY(-5px);
+}
+
+.noteItem h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.noteItem h4 {
+    margin-top: 5px;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.noteItem p {
+    margin-top: 10px;
+    color: #555;
+}
+
+.noteItem a {
+    color: #2196F3;
+    text-decoration: none;
+}
+
+.noteItem a:hover {
+    text-decoration: underline;
+}

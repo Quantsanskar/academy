@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'; // Importing useRouter from 'next/router'
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-
+import Link from 'next/link';
 const Index = () => {
     const [whyChooseVisible, setWhyChooseVisible] = useState(false);
     const [programsVisible, setProgramsVisible] = useState(false);
@@ -54,12 +54,12 @@ const Index = () => {
                 <nav className={styles.navbar}>
                     <ul className={styles.navList}>
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">About A&G</a></li>
+                        <li><Link href="/AboutPage">About A&G</Link></li>
                         <li><a href="#">A&G Results</a></li>
                         <li className={styles.dropdown}>
                             <a href="#">Student Zone</a>
                             <div className={styles.dropdownContent}>
-                                <a href="#">Student Portal</a>
+                                <Link href="/studentportal">Student Portal</Link>
                             </div>
                         </li>
                         <li><a href="#">Contact Us</a></li>
@@ -83,12 +83,9 @@ const Index = () => {
                     <div className={styles.servicesContainer}>
                         <h2>Welcome to Our Academy</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lectus eu enim mattis aliquet id vel nisi.</p>
-                        <button className={styles.aboutUsButton}>About Us</button>
+                        <button className={styles.aboutUsButton} onClick={()=>router.push('/AboutPage')}>About Us</button>
                     </div>
                 </div>
-
-
-
 
                 {/* Why Choose A & G Section */}
                 <div className={styles.whyChoose}>

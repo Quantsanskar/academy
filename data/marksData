@@ -1,0 +1,102 @@
+// marksData.js
+
+const marksData = [
+    // Class 11 Chemistry Marks
+    {
+        class: 'Class 11',
+        subject: 'Chemistry',
+        marks: [
+            {
+                date: '2024-04-01',
+                topic: 'Atomic Structure',
+                marksObtained: 45,
+                totalMarks: 50,
+                percentage: '90%',
+                remark: 'Excellent'
+            },
+            {
+                date: '2024-04-15',
+                topic: 'Chemical Bonding',
+                marksObtained: 40,
+                totalMarks: 50,
+                percentage: '80%',
+                remark: 'Good'
+            },
+            // Add more marks data for Class 11 Chemistry
+        ]
+    },
+    // Class 11 Computer Science Marks
+    {
+        class: 'Class 11',
+        subject: 'Computer Science',
+        marks: [
+            {
+                date: '2024-04-05',
+                topic: 'Introduction to Programming',
+                marksObtained: 48,
+                totalMarks: 50,
+                percentage: '96%',
+                remark: 'Excellent'
+            },
+            {
+                date: '2024-04-20',
+                topic: 'Data Structures',
+                marksObtained: 42,
+                totalMarks: 50,
+                percentage: '84%',
+                remark: 'Good'
+            },
+            // Add more marks data for Class 11 Computer Science
+        ]
+    },
+    // Class 12 Chemistry Marks
+    {
+        class: 'Class 12',
+        subject: 'Chemistry',
+        marks: [
+            {
+                date: '2024-04-02',
+                topic: 'Solid State',
+                marksObtained: 43,
+                totalMarks: 50,
+                percentage: '86%',
+                remark: 'Good'
+            },
+            {
+                date: '2024-04-18',
+                topic: 'Solutions',
+                marksObtained: 38,
+                totalMarks: 50,
+                percentage: '76%',
+                remark: 'Average'
+            },
+            // Add more marks data for Class 12 Chemistry
+        ]
+    },
+    // Class 12 Computer Science Marks
+    {
+        class: 'Class 12',
+        subject: 'Computer Science',
+        marks: [
+            {
+                date: '2024-04-10',
+                topic: 'Database Management',
+                marksObtained: 47,
+                totalMarks: 50,
+                percentage: '94%',
+                remark: 'Excellent'
+            },
+            {
+                date: '2024-04-25',
+                topic: 'Networking',
+                marksObtained: 40,
+                totalMarks: 50,
+                percentage: '80%',
+                remark: 'Good'
+            },
+            // Add more marks data for Class 12 Computer Science
+        ]
+    }
+];
+
+export default marksData;

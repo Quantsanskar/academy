@@ -1,0 +1,55 @@
+.pyqsContainer {
+    padding: 20px;
+}
+
+.selectors {
+    margin-bottom: 20px;
+}
+
+.selectors label {
+    margin-right: 10px;
+}
+
+.selectors select {
+    margin-right: 20px;
+    padding: 5px;
+}
+
+.pyqsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.pyqItem {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.pyqItem:hover {
+    transform: translateY(-5px);
+}
+
+.pyqItem h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.pdfLinks {
+    margin-top: 10px;
+}
+
+.pdfLinks a {
+    display: block;
+    margin-bottom: 5px;
+    color: #2196F3;
+    text-decoration: none;
+}
+
+.pdfLinks a:hover {
+    text-decoration: underline;
+}

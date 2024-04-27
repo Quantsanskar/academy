@@ -1,0 +1,54 @@
+/* StudentPortal.css */
+
+.container {
+    display: flex;
+}
+
+.nav {
+    position: relative;
+}
+
+
+
+.navPanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-x: hidden;
+    transition: width 0.3s;
+    margin-top: 50px;
+}
+
+
+
+.navPanel ul {
+    list-style-type:circle;
+    padding: 0;
+    margin-top: 50px;
+}
+
+.navPanel ul li {
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.navPanel ul li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mainContent {
+    flex: 1;
+    padding: 20px;
+    margin-left: 110px;
+}
+
+.sectionContent {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-left: 110px;
+}
