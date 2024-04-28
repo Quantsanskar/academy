@@ -1,5 +1,6 @@
 .container{
     background: linear-gradient(to right, #9b9b9b, #292828,#000000);
+    font-style: sytem-ui;
 }
 .headerLogo {
     /* padding: 10px; */
@@ -18,7 +19,7 @@
 
 /* Navbar */
 .navbar {
-    background: linear-gradient(to right, #9b9b9b, #292828,#000000);
+    background: #292828;
     /* Gradient background */
     position: fixed;
 
@@ -39,6 +40,7 @@
     /* Add shadow for depth */
     transition: background-color 0.3s, box-shadow 0.3s, width 0.3s;
     /* Smooth transition */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .navList {
@@ -160,6 +162,7 @@
     background: rgba(0, 0, 0, 0.7);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .overlay h2,
@@ -210,7 +213,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     /* Adjust as needed */
 }
 
@@ -245,6 +248,7 @@
 }
 
 .aboutUsButton {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: #4CAF50;
     /* Green background color */
     color: white;
@@ -267,6 +271,7 @@
 
 /* Why Choose A & G Section */
 .whyChoose {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-top: 0px;
     /* Adjust margin top as needed */
     text-align: center;
@@ -284,6 +289,7 @@
 }
 
 .features {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -318,6 +324,7 @@
 
 /* Our Programs Section */
 .programsSection {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-top: 10px;
     transform: translateY(50px);
     transition: opacity 0.5s, transform 0.5s;
@@ -398,6 +405,7 @@
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
     text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .slogan p {
@@ -420,6 +428,7 @@
 
 /* Our Testblazers */
 .trailBlazersSection {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: center;
     margin-top: 100px;
 }
@@ -482,6 +491,7 @@
 /* CSS Styles for Footer */
 
 .footer {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: #333;
     padding: 50px 0;
 }
