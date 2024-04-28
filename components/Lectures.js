@@ -48,7 +48,7 @@ const Lectures = () => {
                                         {chapter.lectures.map((lecture, lectureIndex) => (
                                             <div key={lectureIndex} className={styles.lectureItem}>
                                                 <h5>{lecture.title}</h5>
-                                                <video controls>
+                                                <video controls controlsList="nodownload">
                                                     <source src={lecture.videoUrl} />
                                                     Your browser does not support the video tag.
                                                 </video>

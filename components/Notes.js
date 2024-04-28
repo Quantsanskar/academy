@@ -8,6 +8,7 @@ const Notes = () => {
     const [filteredNotes, setFilteredNotes] = useState([]);
     const [selectedClass, setSelectedClass] = useState('Class 11');
     const [showChooseClassMsg, setShowChooseClassMsg] = useState(true);
+    const [selectedNote, setSelectedNote] = useState(null);
 
     useEffect(() => {
         handleClassChange({ target: { value: selectedClass } });
@@ -23,6 +24,14 @@ const Notes = () => {
         } else {
             setFilteredNotes([]);
         }
+    };
+
+    const openNote = (note) => {
+        setSelectedNote(note);
+    };
+
+    const closeNote = () => {
+        setSelectedNote(null);
     };
 
     return (
@@ -49,7 +58,7 @@ const Notes = () => {
                                         {chapter.notes.map((note, noteIndex) => (
                                             <div key={noteIndex} className={styles.noteItem}>
                                                 <h5>{note.title}</h5>
-                                                <a href={note.filePath} target="_blank" rel="noopener noreferrer">View PDF</a>
+                                                <button onClick={() => openNote(note)}>View PDF</button>
                                             </div>
                                         ))}
                                     </div>
@@ -59,6 +68,15 @@ const Notes = () => {
                     </div>
                 ))}
             </div>
+
+            {selectedNote && (
+                <div className={styles.noteModal}>
+                    <div className={styles.modalContent}>
+                        <button className={styles.closeButton} onClick={closeNote}>Close</button>
+                        <iframe className={styles.pdfViewer} src={selectedNote.filePath} title="Notes PDF"></iframe>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router'; // Importing useRouter from 'next/router'
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
+
 const Index = () => {
     const [whyChooseVisible, setWhyChooseVisible] = useState(false);
     const [programsVisible, setProgramsVisible] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    const router = useRouter(); // Using useRouter hook
+    const images = ['/image1.png', '/image2.png', '/image3.png', '/image4.png'];
+
+    const router = useRouter();
+
     useEffect(() => {
         const handleScroll = () => {
             const whyChooseSection = document.querySelector(`.${styles.whyChoose}`);
@@ -31,10 +36,18 @@ const Index = () => {
         };
 
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Call handleScroll initially to check visibility
+        handleScroll();
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
+    }, []);
+
+    useEffect(() => {
+        const slideImages = () => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        };
+        const interval = setInterval(slideImages, 5000);
+        return () => clearInterval(interval);
     }, []);
 
     return (
@@ -46,12 +59,10 @@ const Index = () => {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <div className={styles.headerBackground}></div>
-                <div className={styles.header}>
-                    <img src="/ag_logo.png" alt="A and G Academy Logo" className={styles.headerLogo} />
-                </div>
-
-                {/* Navbar */}
                 <nav className={styles.navbar}>
+                    <div className={styles.logo}>
+                        <img src="/ag_logo.png" alt="A and G Academy Logo" className={styles.headerLogo} />
+                    </div>
                     <ul className={styles.navList}>
                         <li><a href="#">Home</a></li>
                         <li><Link href="/AboutPage">About A&G</Link></li>
@@ -65,25 +76,32 @@ const Index = () => {
                         <li><a href="#">Contact Us</a></li>
                     </ul>
                 </nav>
-
-                {/* Institute Logo and Tagline */}
-                <div className={styles.instituteInfo}>
-                    <img src="/ag_logo.png" alt="Institute Logo" className={styles.instituteLogo} />
-                    <p className={styles.tagline}>It's time to learn....</p>
+                <div className={styles.slideshowContainer}>
+                    <div className={styles.slideshow}>
+                        {images.map((image, index) => (
+                            <div
+                                key={index}
+                                className={`${styles.slide} ${index === currentImageIndex ? styles.active : ''}`}
+                                style={{ backgroundImage: `url(${image})` }}
+                            >
+                                <div className={styles.overlay}>
+                                    <h2>Discover Something Amazing</h2>
+                                    <p>Explore our programs and unlock your potential</p>
+                                    <button className={styles.exploreButton}>Explore Now</button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Admission Pamphlets Section */}
                 <div className={styles.admissionPamphlets}>
-                    {/* Left: Animated Admission Templates */}
                     <div className={styles.admissionTemplates}>
-                        {/* Dummy GIF */}
                         <img src="/join sus.jpg" alt="Dummy Image" className={styles.admissionImage} />
                     </div>
-                    {/* Right: Attractive Container with Service Intro */}
                     <div className={styles.servicesContainer}>
                         <h2>Welcome to Our Academy</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et lectus eu enim mattis aliquet id vel nisi.</p>
-                        <button className={styles.aboutUsButton} onClick={()=>router.push('/AboutPage')}>About Us</button>
+                        <button className={styles.aboutUsButton} onClick={() => router.push('/AboutPage')}>About Us</button>
                     </div>
                 </div>
 
@@ -204,7 +222,7 @@ const Index = () => {
                         © 2024 STUDYPHORA | ALL RIGHTS RESERVED
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     );
 }
