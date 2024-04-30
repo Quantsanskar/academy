@@ -172,7 +172,7 @@ const Index = () => {
                             <div className={styles.profileDetails}>
                                 <h3>John Doe</h3>
                                 <p>Batch: 2023</p>
-                                <p>Percentage: 98%</p>
+                                <p>Percentage: 1000%</p>
                                 <p className={styles.feedback}>"A&G Academy has truly transformed my academic journey. I'm grateful for the guidance and support."</p>
                             </div>
                         </div>
@@ -190,7 +190,7 @@ const Index = () => {
                             <div className={styles.profileDetails}>
                                 <h3>Michael Johnson</h3>
                                 <p>Batch: 2023</p>
-                                <p>Percentage: 96%</p>
+                                <p>Percentage: 100%</p>
                                 <p className={styles.feedback}>"A&G Academy provided me with the tools and resources to achieve my academic goals."</p>
                             </div>
                         </div>
