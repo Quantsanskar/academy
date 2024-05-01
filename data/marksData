@@ -3,7 +3,7 @@
 const marksData = [
     // Class 11 Chemistry Marks
     {
-        class: 'Class 11',
+        class: '11',
         subject: 'Chemistry',
         marks: [
             {
@@ -27,7 +27,7 @@ const marksData = [
     },
     // Class 11 Computer Science Marks
     {
-        class: 'Class 11',
+        class: '11',
         subject: 'Computer Science',
         marks: [
             {
@@ -51,7 +51,7 @@ const marksData = [
     },
     // Class 12 Chemistry Marks
     {
-        class: 'Class 12',
+        class: '12',
         subject: 'Chemistry',
         marks: [
             {
@@ -75,7 +75,7 @@ const marksData = [
     },
     // Class 12 Computer Science Marks
     {
-        class: 'Class 12',
+        class: '12',
         subject: 'Computer Science',
         marks: [
             {

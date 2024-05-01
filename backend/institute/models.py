@@ -44,3 +44,17 @@ class Teacher(models.Model):
     institutes=models.CharField(max_length=56, null=False, default="unknown")
     achievements=models.CharField(max_length=56, null=False, default="unknown")
     classes_assigned = models.CharField(max_length=56, null=False, default="unknown")
+
+class Marks(models.Model):
+    name=models.CharField(max_length=56, null=False, default="unknown")
+    username = models.CharField(max_length=56, null=False)
+    clas = models.CharField(max_length=56, null=False)
+    subjects = models.TextField(max_length=256, null=False)
+    mobile = models.CharField(max_length=13, null=False, default="+91")
+    par_mobile = models.CharField(max_length=13, null=False, default="+91")
+    email = models.EmailField(max_length=254, null=False)
+    topic = models.CharField(max_length=56, null=False, default="unknown")
+    marks_total=models.CharField(max_length=13, null=False)
+    marks_obtained=models.CharField(max_length=13, null=False)
+    remark=models.CharField(max_length=56, null=False, default="unknown")
+    

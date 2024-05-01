@@ -2,7 +2,7 @@
 
 const testdata = [
     {
-        class: "Class 11",
+        class: "11",
         subjects: [
             {
                 name: "Chemistry",
@@ -77,7 +77,7 @@ const testdata = [
         ]
     },
     {
-        class: "Class 12",
+        class: "12",
         subjects: [
             {
                 name: "Chemistry",
