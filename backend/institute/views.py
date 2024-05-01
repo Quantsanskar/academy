@@ -9,13 +9,13 @@ from rest_framework.views import APIView
 from .utils import send_sms, send_email
 
 
-from .models import User, Admin, Student, Teacher, Marks
+from .models import User, Admin, Student, Teacher, StudentMark
 from .serializers import (
     UserSerializer,
     AdminSerializer,
     StudentSerializer,
     TeacherSerializer,
-    MarksSerializer,
+    StudentMarkSerializer,
 )
 
 from django.views.decorators.csrf import csrf_exempt
@@ -37,14 +37,6 @@ class UserListAPIView(generics.ListAPIView):
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# class UserDetailAPIView(generics.GenericAPIView):
-#     serializer_class = UserSerializer
-
-#     def get(self, request, slug):
-#         query_set = User.objects.filter(slug=slug).first()
-#         if query_set:
-#             return response.Response(self.serializer_class(query_set).data)
-#         return response.Response("Not Found", status=status.HTTP_404_NOT_FOUND)
 
 
 class AdminListAPIView(generics.ListAPIView):
@@ -68,11 +60,10 @@ class TeacherListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Teacher.objects.all()
 
-class MarksListAPIView(generics.ListCreateAPIView):
-    serializer_class = MarksSerializer
-
+class StudentMarkListAPIView(generics.ListCreateAPIView):
+    serializer_class = StudentMarkSerializer
     def get_queryset(self):
-        return Marks.objects.all()
+        return StudentMark.objects.all()
 
 
 def authenticate_user(request):

@@ -45,7 +45,7 @@ class Teacher(models.Model):
     achievements=models.CharField(max_length=56, null=False, default="unknown")
     classes_assigned = models.CharField(max_length=56, null=False, default="unknown")
 
-class Marks(models.Model):
+class StudentMark(models.Model):
     name=models.CharField(max_length=56, null=False, default="unknown")
     username = models.CharField(max_length=56, null=False)
     clas = models.CharField(max_length=56, null=False)
