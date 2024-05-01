@@ -1,6 +1,6 @@
-/* Lectures.module.css */
-
 .lecturesContainer {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
 }
 
@@ -8,34 +8,69 @@
     margin-bottom: 20px;
 }
 
-.chooseClass label {
-    margin-right: 10px;
-}
-
-.chooseClass select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.chooseClass select:focus {
-    outline: none;
-}
-
-.lectureList {
-    margin-top: 20px;
+.lecturesList {
+    display: grid;
+    gap: 20px;
 }
 
 .lectureItem {
-    margin-top: 10px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
 }
 
-.lectureItem h5 {
-    margin: 0;
+.lectureItem h3 {
+    margin-top: 0;
 }
 
-.lectureItem video {
-    width: 100%;
+.lectureItem button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.lectureItem button:hover {
+    background-color: #0056b3;
+}
+
+.lectureModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.closeButton {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.closeButton:hover {
+    background-color: #bd2130;
+}
+
+.videoPlayer {
+    width: 100%;
+    max-width: 600px;
 }

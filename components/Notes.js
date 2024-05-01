@@ -1,30 +1,42 @@
-// Notes.js
-
 import { useState, useEffect } from 'react';
 import styles from '../styles/Notes.module.css';
 import notesData from '../data/notesData';
 
 const Notes = () => {
     const [filteredNotes, setFilteredNotes] = useState([]);
-    const [selectedClass, setSelectedClass] = useState('Class 11');
+    const [selectedClass, setSelectedClass] = useState('');
     const [showChooseClassMsg, setShowChooseClassMsg] = useState(true);
     const [selectedNote, setSelectedNote] = useState(null);
+    const [userData, setUserData] = useState(null);
 
     useEffect(() => {
-        handleClassChange({ target: { value: selectedClass } });
-    }, [selectedClass]);
+        fetchUserData();
+    }, []);
 
-    const handleClassChange = (event) => {
-        setSelectedClass(event.target.value);
-        setShowChooseClassMsg(false);
-        if (event.target.value === 'Class 11') {
-            setFilteredNotes(notesData.filter(data => data.class === 'Class 11'));
-        } else if (event.target.value === 'Class 12') {
-            setFilteredNotes(notesData.filter(data => data.class === 'Class 12'));
-        } else {
-            setFilteredNotes([]);
+    const fetchUserData = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/student');
+            if (!response.ok) {
+                throw new Error('Failed to fetch user data');
+            }
+            const data = await response.json();
+            const loggedInUsername = localStorage.getItem('username');
+            const loggedInUser = data.find(user => user.username === loggedInUsername);
+            if (loggedInUser) {
+                setUserData(loggedInUser);
+                setSelectedClass(loggedInUser.clas);
+                setShowChooseClassMsg(false);
+            } else {
+                console.log('Logged-in user data not found.');
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error.message);
         }
     };
+
+    // const handleClassChange = (event) => {
+    //     setSelectedClass(event.target.value);
+    // };
 
     const openNote = (note) => {
         setSelectedNote(note);
@@ -34,35 +46,44 @@ const Notes = () => {
         setSelectedNote(null);
     };
 
+    useEffect(() => {
+        if (userData && userData.subjects) {
+            const filteredSubjects = userData.subjects.split('\r\n');
+            const filteredNotesData = filteredSubjects.map((subject) => {
+                // Find the subject object in notesData
+                const subjectData = notesData.find((data) => data.subjects.some((s) => s.name === subject));
+                if (subjectData) {
+                    // Extract the notes for the found subject
+                    const notes = subjectData.subjects.find((s) => s.name === subject).chapters.flatMap((chapter) => chapter.notes);
+                    return { subject, notes };
+                } else {
+                    return { subject, notes: [] }; // Subject not found in notesData
+                }
+            });
+            setFilteredNotes(filteredNotesData);
+        }
+    }, [userData]);
+
+
     return (
         <div className={styles.notesContainer}>
             <div className={styles.chooseClass}>
                 <label htmlFor="classSelect">Choose a class:</label>
-                <select id="classSelect" value={selectedClass} onChange={handleClassChange}>
-                    <option value="Class 11">Class 11</option>
-                    <option value="Class 12">Class 12</option>
+                <select id="classSelect" value={selectedClass}>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
                 </select>
                 {showChooseClassMsg && <p>Please choose your class.</p>}
             </div>
 
             <div className={styles.notesList}>
-                {filteredNotes.map((classData, classIndex) => (
-                    <div key={classIndex}>
-                        <h2>{classData.class}</h2>
-                        {classData.subjects.map((subject, subjectIndex) => (
-                            <div key={subjectIndex}>
-                                <h3>{subject.name}</h3>
-                                {subject.chapters.map((chapter, chapterIndex) => (
-                                    <div key={chapterIndex}>
-                                        <h4>{chapter.name}</h4>
-                                        {chapter.notes.map((note, noteIndex) => (
-                                            <div key={noteIndex} className={styles.noteItem}>
-                                                <h5>{note.title}</h5>
-                                                <button onClick={() => openNote(note)}>View PDF</button>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ))}
+                {filteredNotes.map((subjectData, index) => (
+                    <div key={index}>
+                        <h2>{subjectData.subject}</h2>
+                        {subjectData.notes.map((note, noteIndex) => (
+                            <div key={noteIndex} className={styles.noteItem}>
+                                <h3>{note.title}</h3>
+                                <button onClick={() => openNote(note)}>View PDF</button>
                             </div>
                         ))}
                     </div>

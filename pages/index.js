@@ -70,7 +70,7 @@ const Index = () => {
                         <li className={styles.dropdown}>
                             <a href="#">Student Zone</a>
                             <div className={styles.dropdownContent}>
-                                <Link href="/studentportal">Student Portal</Link>
+                                <Link href="/studentsignin">Student Portal</Link>
                             </div>
                         </li>
                         <li><a href="#">Contact Us</a></li>

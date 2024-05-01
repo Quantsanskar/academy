@@ -1,6 +1,7 @@
 // StudentPortal.js
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import {useRouter} from 'next/router';
 import LectureData from '../data/lectureData'; // Assuming you have lecture data stored in a separate file
 import styles from '../styles/StudentPortal.module.css';
 import Lectures from '../components/Lectures';
@@ -16,7 +17,7 @@ const StudentPortal = () => {
     const [selectedSection, setSelectedSection] = useState('');
     const [filteredLectures, setFilteredLectures] = useState([]);
 
-
+    const router = useRouter();
     const handleSectionClick = (section) => {
         setSelectedSection(section);
         setIsNavOpen(false);
@@ -26,6 +27,29 @@ const StudentPortal = () => {
             setFilteredLectures([]); // Reset filtered lectures for other sections
         }
     };
+
+    const handleLogout = () => {
+        router.push('/');
+        localStorage.clear();
+        
+    };
+    useEffect(() => {
+        const checkAuthentication = async () => {
+            try {
+                // Check if user is authenticated (you need to implement this logic)
+                const isAuthenticated = localStorage.getItem('username'); // Example: Check for authentication token
+
+                if (!isAuthenticated) {
+                    router.push('/'); // Redirect to sign-in page if not authenticated
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+        // Check authentication when the component mounts
+        checkAuthentication();
+    }, [router]);
 
     return (
         <div className={styles.container}>
@@ -42,6 +66,7 @@ const StudentPortal = () => {
                         <li onClick={() => handleSectionClick('feestatus')}>Fee Status</li>
                         <li onClick={() => handleSectionClick('batch')}>Batch Details</li>
                         <li onClick={() => handleSectionClick('teachers')}>Teachers</li>
+                        <button onClick={handleLogout}>Log Out</button>
                     </ul>
                 </div>
             </div>
@@ -65,7 +90,7 @@ const StudentPortal = () => {
                         {/* Add content for other sections here */}
                     </div>
                 )}
-                
+
             </div>
 
         </div>
