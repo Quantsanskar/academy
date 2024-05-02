@@ -11,7 +11,23 @@ const AdminPortal = () => {
     const handleSectionClick = (section) => {
         setSelectedSection(section);
         setIsNavOpen(false);
-        
+        // Implement navigation logic based on selected section
+        switch (section) {
+            case 'uploadChem11Attendance':
+                router.push('/Chem11att');
+                break;
+            case 'uploadChem12Attendance':
+                router.push('/upload/chem12attendance');
+                break;
+            case 'uploadCs11Attendance':
+                router.push('/upload/cs11attendance');
+                break;
+            case 'uploadCs12Attendance':
+                router.push('/upload/cs12attendance');
+                break;
+            default:
+                break;
+        }
     };
 
     const handleLogout = () => {
@@ -19,19 +35,19 @@ const AdminPortal = () => {
         localStorage.clear();
     };
 
-    // useEffect(() => {
-    //     const checkAuthentication = async () => {
-    //         try {
-    //             // Check if user is authenticated (you need to implement this logic)
-    //             const isAuthenticated = localStorage.getItem('username'); // Example: Check for authentication token
+    // // useEffect(() => {
+    // //     const checkAuthentication = async () => {
+    // //         try {
+    // //             // Check if user is authenticated (you need to implement this logic)
+    // //             const isAuthenticated = localStorage.getItem('username'); // Example: Check for authentication token
 
-    //             if (!isAuthenticated) {
-    //                 router.push('/'); // Redirect to sign-in page if not authenticated
-    //             }
-    //         } catch (error) {
-    //             console.error('Error:', error);
-    //         }
-    //     };
+    // //             if (!isAuthenticated) {
+    // //                 router.push('/'); // Redirect to sign-in page if not authenticated
+    // //             }
+    // //         } catch (error) {
+    // //             console.error('Error:', error);
+    // //         }
+    // //     };
 
     //     // Check authentication when the component mounts
     //     checkAuthentication();
@@ -40,7 +56,7 @@ const AdminPortal = () => {
     return (
         <div className={styles.container}>
             <div className={styles.nav}>
-            <div className={`${styles.navPanel} ${isNavOpen ? styles.navPanelOpen : ''}`}>
+                <div className={styles.navPanel}>
                     <ul>
                         <li onClick={() => handleSectionClick('uploadChem11Attendance')}>Upload Chem11 Attendance</li>
                         <li onClick={() => handleSectionClick('uploadChem12Attendance')}>Upload Chem12 Attendance</li>
@@ -60,13 +76,6 @@ const AdminPortal = () => {
                 {selectedSection && (
                     <div className={styles.sectionContent}>
                         <h2>{selectedSection.charAt(0).toUpperCase() + selectedSection.slice(1)}</h2>
-                        {selectedSection === 'notes' && <Notes />}
-                        {selectedSection === 'notes' && <Notes />}
-                        {selectedSection === 'notes' && <Notes />}
-                        {selectedSection === 'notes' && <Notes />}
-
-
-
                         {/* Add content for selected section here */}
                     </div>
                 )}

@@ -5,9 +5,11 @@ from django.http import JsonResponse
 # from h11 import Response
 from rest_framework import generics, response, status
 from rest_framework.views import APIView
-
+from rest_framework.generics import ListCreateAPIView
+from rest_framework.response import Response
+from rest_framework import status
 from .utils import send_sms, send_email
-
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
 
 from .models import User, Admin, Student, Teacher, AttendanceChem11, AttendanceChem12, AttendanceCS11, AttendanceCS12
 from .serializers import (
@@ -19,7 +21,7 @@ from .serializers import (
     AttendanceChem12Serializer,
     AttendanceCS11Serializer,
     AttendanceCS12Serializer,
-)   
+)
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -38,8 +40,6 @@ class UserListAPIView(generics.ListAPIView):
             serializer.save()
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
 
 
 class AdminListAPIView(generics.ListAPIView):
@@ -63,28 +63,35 @@ class TeacherListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Teacher.objects.all()
 
+
 class AttendanceChem11ListAPIView(generics.ListCreateAPIView):
     serializer_class = AttendanceChem11Serializer
 
     def get_queryset(self):
         return AttendanceChem11.objects.all()
+
+
+
+
 class AttendanceChem12ListAPIView(generics.ListCreateAPIView):
     serializer_class = AttendanceChem12Serializer
 
     def get_queryset(self):
         return AttendanceChem12.objects.all()
+
+
 class AttendanceCS11ListAPIView(generics.ListCreateAPIView):
     serializer_class = AttendanceCS11Serializer
 
     def get_queryset(self):
         return AttendanceCS11.objects.all()
+
+
 class AttendanceCS12ListAPIView(generics.ListCreateAPIView):
     serializer_class = AttendanceCS12Serializer
 
     def get_queryset(self):
         return AttendanceCS12.objects.all()
-    
-
 
 
 def authenticate_user(request):
