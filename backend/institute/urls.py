@@ -10,6 +10,7 @@ from .views import (
     AttendanceCS12ListAPIView,
     SendSMSView,
     SendEmailView,
+    updateAttendance,
 )
 
 
@@ -18,8 +19,12 @@ urlpatterns = [
     path("admin", AdminListAPIView.as_view(), name="admin"),
     path("student", StudentListAPIView.as_view(), name="student"),
     path("teacher", TeacherListAPIView.as_view(), name="teacher"),
-    path('attendancechem11', AttendanceChem11ListAPIView.as_view(), name='AttendanceChem11'),
-    path("attendancechem12", AttendanceChem12ListAPIView.as_view(), name="AttendanceChem12"),
+    path("attendancechem11", updateAttendance, name="updateAttendance"),
+    path(
+        "attendancechem12",
+        AttendanceChem12ListAPIView.as_view(),
+        name="AttendanceChem12",
+    ),
     path("attendancecs11", AttendanceCS11ListAPIView.as_view(), name="AttendanceCS11"),
     path("attendancecs12", AttendanceCS12ListAPIView.as_view(), name="AttendanceCS12"),
     path("send-sms-request/", SendSMSView.as_view(), name="send_sms"),
