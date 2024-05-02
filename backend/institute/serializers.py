@@ -30,11 +30,7 @@ class AttendanceChem11Serializer(serializers.ModelSerializer):
     class Meta:
         model = AttendanceChem11
         fields = "__all__"
-class AttendanceChem11Serializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = AttendanceChem11
-        fields = "__all__"
 class AttendanceChem12Serializer(serializers.ModelSerializer):
 
     class Meta:

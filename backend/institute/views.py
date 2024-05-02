@@ -80,27 +80,27 @@ class AttendanceChem11ListAPIView(generics.ListCreateAPIView):
         return AttendanceChem11.objects.all()
 
 
-def updateAttendance(request):
-    if request.method == "GET":
-        username = request.get("username")
-        attendance_status = request.get("attendance_status")
+    def post(self,request):
+        
+        username = request.data.get("username")
+        attendance_status = request.data.get("status")
 
         try:
             student = AttendanceChem11.objects.get(username=username)
             if attendance_status == "present":
-                student.classes_attended += 1
-                student.total_classes += 1
+                student.classes_attended = int(student.classes_attended)+1
+                student.total_classes = int(student.total_classes)+1
             else:
-                student.total_classes += 1
-                student.absent_days += 1
+                student.total_classes = int(student.total_classes)+1
+                student.absent_days = int(student.absent_days)+1
             student.save()
             return JsonResponse(
                 {"message": "Attendance updated successfully"}, status=200
             )
         except AttendanceChem11.DoesNotExist:
             return JsonResponse({"message": "Student not found"}, status=404)
-    else:
-        return JsonResponse({"message": "Invalid request method"}, status=405)
+        else:
+            return JsonResponse({"message": "Invalid request method"}, status=405)
 
 
 class AttendanceChem12ListAPIView(generics.ListCreateAPIView):
