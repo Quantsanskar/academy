@@ -4,32 +4,46 @@
     padding: 20px;
 }
 
-.attendanceTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+.subjectSection {
+    margin-bottom: 30px;
 }
 
-.attendanceTable th,
-.attendanceTable td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+.attendanceData {
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
 }
 
-.attendanceTable th {
-    background-color: #f2f2f2;
+.attendanceData h3 {
+    color: #333;
+    margin-bottom: 5px;
 }
 
-.attendanceTable tr:nth-child(even) {
-    background-color: #f2f2f2;
+.attendanceData h4 {
+    color: #666;
+    margin-bottom: 10px;
 }
 
-.attendanceTable tr:hover {
-    background-color: #ddd;
+.attendanceData p {
+    margin: 5px 0;
+    color: #555;
 }
 
-.attendanceMessage {
+.attendanceData p:first-child {
     margin-top: 10px;
-    font-weight: bold;
+}
+
+.attendanceData p:last-child {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .attendanceContainer {
+        padding: 10px;
+    }
+
+    .attendanceData {
+        padding: 15px;
+    }
 }

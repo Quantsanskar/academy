@@ -9,13 +9,17 @@ from rest_framework.views import APIView
 from .utils import send_sms, send_email
 
 
-from .models import User, Admin, Student, Teacher
+from .models import User, Admin, Student, Teacher, AttendanceChem11, AttendanceChem12, AttendanceCS11, AttendanceCS12
 from .serializers import (
     UserSerializer,
     AdminSerializer,
     StudentSerializer,
     TeacherSerializer,
-)
+    AttendanceChem11Serializer,
+    AttendanceChem12Serializer,
+    AttendanceCS11Serializer,
+    AttendanceCS12Serializer,
+)   
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -58,6 +62,29 @@ class TeacherListAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         return Teacher.objects.all()
+
+class AttendanceChem11ListAPIView(generics.ListCreateAPIView):
+    serializer_class = AttendanceChem11Serializer
+
+    def get_queryset(self):
+        return AttendanceChem11.objects.all()
+class AttendanceChem12ListAPIView(generics.ListCreateAPIView):
+    serializer_class = AttendanceChem12Serializer
+
+    def get_queryset(self):
+        return AttendanceChem12.objects.all()
+class AttendanceCS11ListAPIView(generics.ListCreateAPIView):
+    serializer_class = AttendanceCS11Serializer
+
+    def get_queryset(self):
+        return AttendanceCS11.objects.all()
+class AttendanceCS12ListAPIView(generics.ListCreateAPIView):
+    serializer_class = AttendanceCS12Serializer
+
+    def get_queryset(self):
+        return AttendanceCS12.objects.all()
+    
+
 
 
 def authenticate_user(request):

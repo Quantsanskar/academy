@@ -73,6 +73,12 @@ const Index = () => {
                                 <Link href="/studentsignin">Student Portal</Link>
                             </div>
                         </li>
+                        <li className={styles.dropdown}>
+                            <a href="#">Admin Zone</a>
+                            <div className={styles.dropdownContent}>
+                                <Link href="/adminsignin">Admin Portal</Link>
+                            </div>
+                        </li>
                         <li><a href="#">Contact Us</a></li>
                     </ul>
                 </nav>

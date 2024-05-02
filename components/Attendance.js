@@ -1,63 +1,68 @@
-// Attendance.js
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../styles/Attendance.module.css';
 
 const Attendance = () => {
-    // Dummy attendance data
-    const [attendanceData] = useState([
-        { subject: 'Chemistry', totalClasses: 20, attendedClasses: 16 },
-        { subject: 'Computer Science', totalClasses: 18, attendedClasses: 15 }
-    ]);
+    const [attendanceData, setAttendanceData] = useState({});
+    const [loggedInUsername, setLoggedInUsername] = useState('');
 
-    // Calculate total attendance percentage
-    const totalAttendancePercentage = ((attendanceData.reduce((total, { attendedClasses }) => total + attendedClasses, 0) /
-        attendanceData.reduce((total, { totalClasses }) => total + totalClasses, 0)) *
-        100).toFixed(2);
+    useEffect(() => {
+        // Get logged-in username from localStorage
+        const username = localStorage.getItem('username');
+        if (username) {
+            setLoggedInUsername(username);
+            // Fetch attendance data for the logged-in user
+            fetchAttendanceData(username);
+        }
+    }, []);
 
-    // Determine message based on attendance percentage
-    const attendanceMessage =
-        totalAttendancePercentage < 85
-            ? 'Please attend the classes regularly.'
-            : 'Maintain this attendance!';
+    const fetchAttendanceData = async (username) => {
+        try {
+            // Fetch attendance data for the logged-in user from backend APIs
+            const responses = await Promise.all([
+                fetch(`http://127.0.0.1:8000/api/attendancechem11`),
+                fetch(`http://127.0.0.1:8000/api/attendancechem12`),
+                fetch(`http://127.0.0.1:8000/api/attendancecs11`),
+                fetch(`http://127.0.0.1:8000/api/attendancecs12`)
+            ]);
+
+            const data = await Promise.all(responses.map(async (response) => {
+                if (response.ok) {
+                    return await response.json();
+                }
+                return [];
+            }));
+
+            const subjects = ['Chemistry 11', 'Chemistry 12', 'Computer Science 11', 'Computer Science 12'];
+            const attendanceObject = {};
+            subjects.forEach((subject, index) => {
+                // Filter data to get only the attendance of the logged-in user
+                const userAttendance = data[index].filter((record) => record.username === username);
+                attendanceObject[subject] = userAttendance;
+            });
+
+            setAttendanceData(attendanceObject);
+        } catch (error) {
+            console.error('Error fetching attendance data:', error.message);
+        }
+    };
 
     return (
         <div className={styles.attendanceContainer}>
-            <table className={styles.attendanceTable}>
-                <thead>
-                    <tr>
-                        <th>Subject</th>
-                        <th>Total Classes</th>
-                        <th>Classes Attended</th>
-                        <th>Classes Missed</th>
-                        <th>Attendance Percentage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {attendanceData.map(({ subject, totalClasses, attendedClasses }) => (
-                        <tr key={subject}>
-                            <td>{subject}</td>
-                            <td>{totalClasses}</td>
-                            <td>{attendedClasses}</td>
-                            <td>{totalClasses - attendedClasses}</td>
-                            <td>{((attendedClasses / totalClasses) * 100).toFixed(2)}%</td>
-                        </tr>
+            {Object.entries(attendanceData).map(([subject, data]) => (
+                <div key={subject} className={styles.subjectSection}>
+                    {/* <h2>{subject}</h2> */}
+                    {data.map((record, index) => (
+                        <div key={index} className={styles.attendanceData}>
+                            <h4>Subject: {record.subject}</h4>
+                            <p>Username: {record.username}</p>
+                            <p>Total Classes: {record.total_classes}</p>
+                            <p>Classes Attended: {record.classes_attended}</p>
+                            <p>Absent Days: {record.absent_days}</p>
+                            <p>Mobile: {record.mobile}</p>
+                        </div>
                     ))}
-                    <tr>
-                        <td>Total</td>
-                        <td>{attendanceData.reduce((total, { totalClasses }) => total + totalClasses, 0)}</td>
-                        <td>{attendanceData.reduce((total, { attendedClasses }) => total + attendedClasses, 0)}</td>
-                        <td>
-                            {attendanceData.reduce(
-                                (total, { totalClasses, attendedClasses }) => total + totalClasses - attendedClasses,
-                                0
-                            )}
-                        </td>
-                        <td>{totalAttendancePercentage}%</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p className={styles.attendanceMessage}>{attendanceMessage}</p>
+                </div>
+            ))}
         </div>
     );
 };

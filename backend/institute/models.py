@@ -35,6 +35,7 @@ class Student(models.Model):
     mobile = models.CharField(max_length=13, null=False, default="+91")
     par_mobile = models.CharField(max_length=13, null=False, default="+91")
     email = models.EmailField(max_length=254, null=False)
+    
 
 
 class Teacher(models.Model):
@@ -44,4 +45,37 @@ class Teacher(models.Model):
     institutes=models.CharField(max_length=56, null=False, default="unknown")
     achievements=models.CharField(max_length=56, null=False, default="unknown")
     classes_assigned = models.CharField(max_length=56, null=False, default="unknown")
+
+class AttendanceChem11(models.Model):
+    name = models.CharField(max_length=56, null=False, default="unknown")
+    subject = models.CharField(max_length=56, null=False, default="unknown")
+    username = models.CharField(max_length=56, null=False, default="unknown")
+    total_classes = models.CharField(max_length=56, null=False, default="unknown")
+    classes_attended = models.CharField(max_length=56, null=False, default="unknown")
+    absent_days = models.CharField(max_length=56, null=False, default="unknown")
+    mobile = models.CharField(max_length=13, null=False, default="+91")
+class AttendanceChem12(models.Model):
+    name = models.CharField(max_length=56, null=False, default="unknown")
+    subject = models.CharField(max_length=56, null=False, default="unknown")
+    username = models.CharField(max_length=56, null=False, default="unknown")
+    total_classes = models.CharField(max_length=56, null=False, default="unknown")
+    classes_attended = models.CharField(max_length=56, null=False, default="unknown")
+    absent_days = models.CharField(max_length=56, null=False, default="unknown")
+    mobile = models.CharField(max_length=13, null=False, default="+91")
+class AttendanceCS11(models.Model):
+    name = models.CharField(max_length=56, null=False, default="unknown")
+    subject = models.CharField(max_length=56, null=False, default="unknown")
+    username = models.CharField(max_length=56, null=False, default="unknown")
+    total_classes = models.CharField(max_length=56, null=False, default="unknown")
+    classes_attended = models.CharField(max_length=56, null=False, default="unknown")
+    absent_days = models.CharField(max_length=56, null=False, default="unknown")
+    mobile = models.CharField(max_length=13, null=False, default="+91")
+class AttendanceCS12(models.Model):
+    name = models.CharField(max_length=56, null=False, default="unknown")
+    subject = models.CharField(max_length=56, null=False, default="unknown")
+    username = models.CharField(max_length=56, null=False, default="unknown")
+    total_classes = models.CharField(max_length=56, null=False, default="unknown")
+    classes_attended = models.CharField(max_length=56, null=False, default="unknown")
+    absent_days = models.CharField(max_length=56, null=False, default="unknown")
+    mobile = models.CharField(max_length=13, null=False, default="+91")
 
