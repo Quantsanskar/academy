@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {useRouter} from 'next/router';
 import styles from "../styles/Chem11att.css";
 const Chem11Attendance = () => {
     const [students, setStudents] = useState([]);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [attendanceStatus, setAttendanceStatus] = useState('');
+    const router = useRouter();
 
     useEffect(() => {
         fetchStudents();
@@ -28,6 +30,7 @@ const Chem11Attendance = () => {
                 status: attendanceStatus,
             });
             alert('Attendance submitted successfully');
+            // router.push('/Chem11att');
         } catch (error) {
             console.error('Error submitting attendance:', error.message);
         }
@@ -49,8 +52,8 @@ const Chem11Attendance = () => {
                     <div key={student.id} className="student">
                         <p>{student.name}</p>
                         <div className="buttons">
-                            <button className={`button ${attendanceStatus === 'present' ? 'present' : ''}`} onClick={() => { handleStudentSelect(student); handleStatusChange('present'); }}>Present</button>
-                            <button className={`button ${attendanceStatus === 'absent' ? 'absent' : ''}`} onClick={() => { handleStudentSelect(student); handleStatusChange('absent'); }}>Absent</button>
+                            <button className={`button ${attendanceStatus === 'present' && selectedStudent === student ? 'present' : ''}`} onClick={() => { handleStudentSelect(student); handleStatusChange('present'); }}>Present</button>
+                            <button className={`button ${attendanceStatus === 'absent' && selectedStudent === student ? 'absent' : ''}`} onClick={() => { handleStudentSelect(student); handleStatusChange('absent'); }}>Absent</button>
                             <button className="submit-button" onClick={() => handleAttendanceSubmit(student)}>Submit</button>
                         </div>
                     </div>
