@@ -30,8 +30,8 @@ const Chem12Attendance = () => {
                 username: student.username,
                 status: attendanceStatus,
             });
-            if(attendanceStatus==="absent"){
-                await axios.post('http://127.0.0.1:8000/api/send-sms-request/',{
+            if (attendanceStatus === "absent") {
+                await axios.post('http://127.0.0.1:8000/api/send-sms-request/', {
                     phone_number: student.mobile,
                     message: `Your ward ${student.name} is absent today.`
                 });
