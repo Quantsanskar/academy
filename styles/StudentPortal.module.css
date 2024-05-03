@@ -2,34 +2,37 @@
 
 .container {
     display: flex;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .nav {
     position: relative;
+    width: 220px;
+    background-color: #292929;
+    color: #fff;
+    padding-top: 20px;
 }
-
-
 
 .navPanel {
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
+    width: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    overflow-x: hidden;
     transition: width 0.3s;
-    margin-top: 50px;
 }
 
-
-
 .navPanel ul {
-    list-style-type:circle;
+    list-style-type: none;
     padding: 0;
     margin-top: 50px;
 }
 
 .navPanel ul li {
+    text-align: right;
+    width: 100px;
     padding: 10px 20px;
     color: #fff;
     cursor: pointer;
@@ -37,18 +40,50 @@
 }
 
 .navPanel ul li:hover {
+    color: red;
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navPanel ul button {
+    margin-left: 30px;
+    padding: 5px 40px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #222;
+    transition: background-color 0.3s;
+}
+
+.navPanel ul button:hover {
+    box-shadow: #f0f0f0;
+    background-color: antiquewhite;
+    color: #222;
 }
 
 .mainContent {
     flex: 1;
     padding: 20px;
-    margin-left: 110px;
+    background-color: #333;
+    overflow-y: auto;
 }
 
-.sectionContent {
-    background-color: #f0f0f0;
+.sectionContent1{
+    max-width: 800px;
+    margin-top: 20%;
+    margin-left: 10%;
     padding: 20px;
+    border: 1px solid #555;
     border-radius: 8px;
-    margin-left: 110px;
+    background-color: #444;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+.sectionContent2{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background-color: #444;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #fff;
 }

@@ -7,9 +7,10 @@
 }
 
 .nav {
-    background-color: #333;
+    background-color: #1a1a1a;
     color: #fff;
     padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .navPanel ul {
@@ -21,6 +22,11 @@
 .navPanel li {
     margin-bottom: 10px;
     cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navPanel li:hover {
+    color: #ff4d4f;
 }
 
 .navPanel button {
@@ -30,6 +36,7 @@
     border: none;
     color: #fff;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .navPanel button:hover {
@@ -41,6 +48,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .sectionContent {
@@ -48,27 +56,29 @@
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .sectionContent h2 {
     margin-bottom: 10px;
+    color: #333;
 }
 
 .sectionContent p {
     margin-bottom: 20px;
+    color: #666;
 }
 
 .navPanel {
-    /* display: none; */
     position: absolute;
     top: 100px;
     left: 20px;
-    background-color: #333;
+    background-color: #1a1a1a;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    
 }
 
 .navPanelOpen {

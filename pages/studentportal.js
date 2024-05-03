@@ -72,13 +72,13 @@ const StudentPortal = () => {
             </div>
             <div className={styles.mainContent}>
                 {!selectedSection && (
-                    <div className={styles.sectionContent}>
+                    <div className={styles.sectionContent1}>
                         <h2>Welcome to the Student Portal!</h2>
                         <p>Hi there! Welcome to the Student Portal. Please select a section from the navigation panel to get started.</p>
                     </div>
                 )}
                 {selectedSection && (
-                    <div className={styles.sectionContent}>
+                    <div className={styles.sectionContent2}>
                         <h2>{selectedSection.charAt(0).toUpperCase() + selectedSection.slice(1)}</h2>
                         {selectedSection === 'lectures' && <Lectures filteredLectures={filteredLectures} />}
                         {selectedSection === 'notes' && <Notes />}

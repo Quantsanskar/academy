@@ -6,8 +6,10 @@ const CS12Attendance = () => {
     const [students, setStudents] = useState([]);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [attendanceStatus, setAttendanceStatus] = useState('');
+    const [absentDate, setAbsentDate] = useState('');
     const router = useRouter();
-
+    const [loading, setLoading] = useState(false);
+    const [submit, setSubmit] = useState(false);
     useEffect(() => {
         fetchStudents();
     }, []);
@@ -23,12 +25,14 @@ const CS12Attendance = () => {
 
     const handleAttendanceSubmit = async (student) => {
         if (!student || !attendanceStatus) return;
-
+        setLoading(true);
+        setSubmit(false);
         try {
             // Submit attendance
             await axios.post('http://127.0.0.1:8000/api/attendancecs12', {
                 username: student.username,
                 status: attendanceStatus,
+                absent_date: absentDate,
             });
             if(attendanceStatus==="absent"){
                 await axios.post('http://127.0.0.1:8000/api/send-sms-request/',{
@@ -36,10 +40,12 @@ const CS12Attendance = () => {
                     message: `Your ward ${student.name} is absent today.`
                 });
             }
-
+            setLoading(false);
+            setSubmit(true);
             alert('Attendance submitted successfully');
         } catch (error) {
             console.error('Error submitting attendance:', error.message);
+            setLoading(false);
         }
     };
 
@@ -52,6 +58,9 @@ const CS12Attendance = () => {
         setAttendanceStatus(status);
     };
 
+    const handleDateChange = (event) => {
+        setAbsentDate(event.target.value);
+    };
     return (
         <div className="container">
             <h1>CS 12 Attendance</h1>
@@ -62,7 +71,13 @@ const CS12Attendance = () => {
                         <div className="buttons">
                             <button className={`button ${attendanceStatus === 'present' && selectedStudent === student ? 'present' : ''}`} onClick={() => { handleStudentSelect(student); handleStatusChange('present'); }}>Present</button>
                             <button className={`button ${attendanceStatus === 'absent' && selectedStudent === student ? 'absent' : ''}`} onClick={() => { handleStudentSelect(student); handleStatusChange('absent'); }}>Absent</button>
-                            <button className="submit-button" onClick={() => handleAttendanceSubmit(student)}>Submit</button>
+                            <input
+                                type="date"
+                                value={absentDate}
+                                onChange={handleDateChange}
+                                className="date-input"
+                            />
+                            <button className="submit-button" onClick={() => handleAttendanceSubmit(student)}>{loading ? <Spinner1 /> : 'Submit' }{submit ? <Spinner2 />:'' }</button>
                         </div>
                     </div>
                 ))}
@@ -70,5 +85,14 @@ const CS12Attendance = () => {
         </div>
     );
 };
-
+const Spinner1 = () => (
+    <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+    </div>
+);
+const Spinner2 = () => (
+    <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Submitted</span>
+    </div>
+);
 export default CS12Attendance;

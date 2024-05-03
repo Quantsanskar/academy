@@ -22,7 +22,7 @@ const Attendance = () => {
                 fetch(`http://127.0.0.1:8000/api/attendancechem11`),
                 fetch(`http://127.0.0.1:8000/api/attendancechem12`),
                 fetch(`http://127.0.0.1:8000/api/attendancecs11`),
-                fetch(`http://127.0.0.1:8000/api/attendancecs12`)
+                fetch(`http://127.0.0.1:8000/api/attendancecs12`),
             ]);
 
             const data = await Promise.all(responses.map(async (response) => {
@@ -58,6 +58,7 @@ const Attendance = () => {
                             <p>Total Classes: {record.total_classes}</p>
                             <p>Classes Attended: {record.classes_attended}</p>
                             <p>Absent Days: {record.absent_days}</p>
+                            <p>Absent Dates: {record.absent_date}</p>
                             <p>Mobile: {record.mobile}</p>
                         </div>
                     ))}

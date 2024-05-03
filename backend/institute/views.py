@@ -83,7 +83,7 @@ class AttendanceChem11ListAPIView(generics.ListCreateAPIView):
 
         username = request.data.get("username")
         attendance_status = request.data.get("status")
-
+        absent_date = request.data.get("absent_date")
         try:
             student = AttendanceChem11.objects.get(username=username)
             if attendance_status == "present":
@@ -92,6 +92,7 @@ class AttendanceChem11ListAPIView(generics.ListCreateAPIView):
             else:
                 student.total_classes = int(student.total_classes)+1
                 student.absent_days = int(student.absent_days)+1
+                student.absent_date += f",{absent_date}"
             student.save()
             return JsonResponse(
                 {"message": "Attendance updated successfully"}, status=200
@@ -112,7 +113,7 @@ class AttendanceChem12ListAPIView(generics.ListCreateAPIView):
 
         username = request.data.get("username")
         attendance_status = request.data.get("status")
-
+        absent_date = request.data.get("absent_date")
         try:
             student = AttendanceChem12.objects.get(username=username)
             if attendance_status == "present":
@@ -121,6 +122,7 @@ class AttendanceChem12ListAPIView(generics.ListCreateAPIView):
             else:
                 student.total_classes = int(student.total_classes)+1
                 student.absent_days = int(student.absent_days)+1
+                student.absent_date += f",{absent_date}"
             student.save()
             return JsonResponse(
                 {"message": "Attendance updated successfully"}, status=200
@@ -141,7 +143,7 @@ class AttendanceCS11ListAPIView(generics.ListCreateAPIView):
 
         username = request.data.get("username")
         attendance_status = request.data.get("status")
-
+        absent_date = request.data.get("absent_date")
         try:
             student = AttendanceCS11.objects.get(username=username)
             if attendance_status == "present":
@@ -150,6 +152,7 @@ class AttendanceCS11ListAPIView(generics.ListCreateAPIView):
             else:
                 student.total_classes = int(student.total_classes)+1
                 student.absent_days = int(student.absent_days)+1
+                student.absent_date += f",{absent_date}"
             student.save()
             return JsonResponse(
                 {"message": "Attendance updated successfully"}, status=200
@@ -170,7 +173,7 @@ class AttendanceCS12ListAPIView(generics.ListCreateAPIView):
 
         username = request.data.get("username")
         attendance_status = request.data.get("status")
-
+        absent_date = request.data.get("absent_date")
         try:
             student = AttendanceCS12.objects.get(username=username)
             if attendance_status == "present":
@@ -179,6 +182,7 @@ class AttendanceCS12ListAPIView(generics.ListCreateAPIView):
             else:
                 student.total_classes = int(student.total_classes)+1
                 student.absent_days = int(student.absent_days)+1
+                student.absent_date += f",{absent_date}"
             student.save()
             return JsonResponse(
                 {"message": "Attendance updated successfully"}, status=200
