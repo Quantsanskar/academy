@@ -17,13 +17,13 @@ const AdminPortal = () => {
                 router.push('/Chem11att');
                 break;
             case 'uploadChem12Attendance':
-                router.push('/upload/chem12attendance');
+                router.push('/Chem12att');
                 break;
             case 'uploadCs11Attendance':
-                router.push('/upload/cs11attendance');
+                router.push('/CS11att');
                 break;
             case 'uploadCs12Attendance':
-                router.push('/upload/cs12attendance');
+                router.push('/CS12att');
                 break;
             default:
                 break;
@@ -35,23 +35,23 @@ const AdminPortal = () => {
         localStorage.clear();
     };
 
-    // // useEffect(() => {
-    // //     const checkAuthentication = async () => {
-    // //         try {
-    // //             // Check if user is authenticated (you need to implement this logic)
-    // //             const isAuthenticated = localStorage.getItem('username'); // Example: Check for authentication token
+    useEffect(() => {
+        const checkAuthentication = async () => {
+            try {
+                // Check if user is authenticated (you need to implement this logic)
+                const isAuthenticated = localStorage.getItem('username'); // Example: Check for authentication token
 
-    // //             if (!isAuthenticated) {
-    // //                 router.push('/'); // Redirect to sign-in page if not authenticated
-    // //             }
-    // //         } catch (error) {
-    // //             console.error('Error:', error);
-    // //         }
-    // //     };
+                if (!isAuthenticated) {
+                    router.push('/'); // Redirect to sign-in page if not authenticated
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
 
-    //     // Check authentication when the component mounts
-    //     checkAuthentication();
-    // }, [router]);
+        // Check authentication when the component mounts
+        checkAuthentication();
+    }, [router]);
 
     return (
         <div className={styles.container}>
@@ -75,7 +75,7 @@ const AdminPortal = () => {
                 )}
                 {selectedSection && (
                     <div className={styles.sectionContent}>
-                        <h2>{selectedSection.charAt(0).toUpperCase() + selectedSection.slice(1)}</h2>
+                        {/* <h2>{selectedSection.charAt(0).toUpperCase() + selectedSection.slice(1)}</h2> */}
                         {/* Add content for selected section here */}
                     </div>
                 )}

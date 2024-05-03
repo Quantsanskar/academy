@@ -1,0 +1,74 @@
+/* styles.css */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.student {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.student p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: flex;
+}
+
+.button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.button.present {
+    background-color: #28a745;
+    /* Green color for present */
+    color: #fff;
+}
+
+.button.absent {
+    background-color: #dc3545;
+    /* Red color for absent */
+    color: #fff;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+    opacity: 0.8;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}

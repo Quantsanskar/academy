@@ -79,7 +79,7 @@ const Index = () => {
                                 <Link href="/adminsignin">Admin Portal</Link>
                             </div>
                         </li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="/Contact">Contact Us</a></li>
                     </ul>
                 </nav>
                 <div className={styles.slideshowContainer}>

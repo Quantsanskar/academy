@@ -1,18 +1,39 @@
 import { useState } from 'react';
 import styles from '../styles/AdminSignIn.module.css'; // Import CSS file
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const AdminSignIn = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
     const router = useRouter();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log('Username:', username);
-        console.log('Password:', password);
-        router.push("/adminportal");
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/admin');
+            const admins = response.data;
+
+            console.log('Response Data:', admins); // Log the response data
+
+            // Iterate through each student to find a matching username and password
+            for (const admin of admins) {
+                if (admin.username === username && admin.password === password) {
+                    // If a match is found, redirect to the admin dashboard
+                    localStorage.setItem('username', username);
+                    router.push('/adminportal');
+                    return; // Exit the loop
+                }
+            }
+
+            // If no match is found, display an error message
+            setError('Invalid username or password');
+        } catch (error) {
+            console.error('Error:', error);
+            setError('An unexpected error occurred');
+        }
     };
 
     return (
