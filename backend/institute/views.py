@@ -281,83 +281,90 @@ class SendEmailView(APIView):
 
 class MarksChem11ListAPIView(generics.ListCreateAPIView):
     serializer_class = MarksChem11Serializer
+    queryset = MarksChem11.objects.all()
 
-    def get_queryset(self):
-        return MarksChem11.objects.all()
+    # def get_queryset(self):
+    #     return MarksChem11.objects.all()
 
-    def post(self, request):
+    # def post(self, request):
+    #     queryset = MarksChem11.objects.all()
+    #     serializer_class = MarksChem11Serializer
 
-        username = request.data.get("username")
-        marks = request.data.get("marks")
-        try:
-            student = MarksChem11.objects.get(username=username)
-            student.marks = marks
-            student.save()
-            return JsonResponse({"message": "Marks updated successfully"}, status=200)
-        except MarksChem11.DoesNotExist:
-            return JsonResponse({"message": "Student not found"}, status=404)
-        else:
-            return JsonResponse({"message": "Invalid request method"}, status=405)
+    #     username = request.data.get("username")
+    #     marks = request.data.get("marks")
+
+    #     try:
+    #         student = MarksChem11.objects.get(username=username)
+    #         student.marks = marks
+    #         student.save()
+    #         return JsonResponse({"message": "Marks updated successfully"}, status=200)
+    #     except MarksChem11.DoesNotExist:
+    #         return JsonResponse({"message": "Student not found"}, status=404)
+    #     else:
+    #         return JsonResponse({"message": "Invalid request method"}, status=405)
 
 
 class MarksChem12ListAPIView(generics.ListCreateAPIView):
     serializer_class = MarksChem12Serializer
+    queryset = MarksChem12.objects.all()
 
-    def get_queryset(self):
-        return MarksChem12.objects.all()
+    # def get_queryset(self):
+    #     return MarksChem12.objects.all()
 
-    def post(self, request):
+    # def post(self, request):
 
-        username = request.data.get("username")
-        marks = request.data.get("marks")
-        try:
-            student = MarksChem12.objects.get(username=username)
-            student.marks = marks
-            student.save()
-            return JsonResponse({"message": "Marks updated successfully"}, status=200)
-        except MarksChem12.DoesNotExist:
-            return JsonResponse({"message": "Student not found"}, status=404)
-        else:
-            return JsonResponse({"message": "Invalid request method"}, status=405)
+    #     username = request.data.get("username")
+    #     marks = request.data.get("marks")
+    #     try:
+    #         student = MarksChem12.objects.get(username=username)
+    #         student.marks = marks
+    #         student.save()
+    #         return JsonResponse({"message": "Marks updated successfully"}, status=200)
+    #     except MarksChem12.DoesNotExist:
+    #         return JsonResponse({"message": "Student not found"}, status=404)
+    #     else:
+    #         return JsonResponse({"message": "Invalid request method"}, status=405)
 
 
 class MarksCS11ListAPIView(generics.ListCreateAPIView):
     serializer_class = MarksCS11Serializer
+    queryset = MarksCS11.objects.all()
 
-    def get_queryset(self):
-        return MarksCS11.objects.all()
+    # def get_queryset(self):
+    #     return MarksCS11.objects.all()
 
-    def post(self, request):
+    # def post(self, request):
 
-        username = request.data.get("username")
-        marks = request.data.get("marks")
-        try:
-            student = MarksCS11.objects.get(username=username)
-            student.marks = marks
-            student.save()
-            return JsonResponse({"message": "Marks updated successfully"}, status=200)
-        except MarksCS11.DoesNotExist:
-            return JsonResponse({"message": "Student not found"}, status=404)
-        else:
-            return JsonResponse({"message": "Invalid request method"}, status=405)
+    #     username = request.data.get("username")
+    #     marks = request.data.get("marks")
+    #     try:
+    #         student = MarksCS11.objects.get(username=username)
+    #         student.marks = marks
+    #         student.save()
+    #         return JsonResponse({"message": "Marks updated successfully"}, status=200)
+    #     except MarksCS11.DoesNotExist:
+    #         return JsonResponse({"message": "Student not found"}, status=404)
+    #     else:
+    #         return JsonResponse({"message": "Invalid request method"}, status=405)
 
 
 class MarksCS12ListAPIView(generics.ListCreateAPIView):
     serializer_class = MarksCS12Serializer
+    queryset = MarksCS12.objects.all()
 
-    def get_queryset(self):
-        return MarksCS12.objects.all()
+    # def get_queryset(self):
+    #     return MarksCS12.objects.all()
 
-    def post(self, request):
+    # def post(self, request):
 
-        username = request.data.get("username")
-        marks = request.data.get("marks")
-        try:
-            student = MarksCS12.objects.get(username=username)
-            student.marks = marks
-            student.save()
-            return JsonResponse({"message": "Marks updated successfully"}, status=200)
-        except MarksCS12.DoesNotExist:
-            return JsonResponse({"message": "Student not found"}, status=404)
-        else:
-            return JsonResponse({"message": "Invalid request method"}, status=405)
+    #     username = request.data.get("username")
+    #     marks = request.data.get("marks")
+    #     try:
+    #         student = MarksCS12.objects.get(username=username)
+    #         student.marks = marks
+    #         student.save()
+    #         return JsonResponse({"message": "Marks updated successfully"}, status=200)
+    #     except MarksCS12.DoesNotExist:
+    #         return JsonResponse({"message": "Student not found"}, status=404)
+    #     else:
+    #         return JsonResponse({"message": "Invalid request method"}, status=405)
