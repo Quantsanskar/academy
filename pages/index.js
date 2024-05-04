@@ -66,7 +66,7 @@ const Index = () => {
                     <ul className={styles.navList}>
                         <li><a href="#">Home</a></li>
                         <li><Link href="/AboutPage">About A&G</Link></li>
-                        <li><a href="#">A&G Results</a></li>
+                        <li><Link href="/agresults">A&G Results</Link></li>
                         <li className={styles.dropdown}>
                             <a href="#">Student Zone</a>
                             <div className={styles.dropdownContent}>
@@ -94,7 +94,7 @@ const Index = () => {
                                 <div className={styles.overlay}>
                                     <h2>Discover Something Amazing</h2>
                                     <p>Explore our programs and unlock your potential</p>
-                                    <button className={styles.exploreButton}>Explore Now</button>
+                                    <button className={styles.exploreButton} onClick={()=>router.push('/agresults')}>Explore Now</button>
                                 </div>
                             </div>
                         ))}
@@ -157,7 +157,7 @@ const Index = () => {
                         <p className={styles.programsDescription}>
                             Learn from our comprehensive classroom programs designed to help you achieve your academic goals. Our expert faculty and personalized approach ensure the best learning experience for every student.
                         </p>
-                        <button className={styles.exploreButton} onClick={() => router.push('/studentsignin')}>Explore Now</button>
+                        <button className={styles.exploreButton} onClick={() => router.push('/studentsignin')}>SIGN IN</button>
                     </div>
                 </div>
 

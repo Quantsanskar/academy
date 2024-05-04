@@ -1,0 +1,50 @@
+/* AGResults.module.css */
+
+.container {
+    background-color: #1f1f1f;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.container .heading {
+    text-align: center;
+    color: #ffcc00;
+}
+
+.container .topperTable {
+    margin-top: 20px;
+}
+
+.container .topperTable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container .topperTable th,
+.container .topperTable td {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.container .topperTable th {
+    background-color: #333;
+}
+
+.container .topperTable td img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.container .comments {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container .comments h3 {
+    color: #ffcc00;
+}

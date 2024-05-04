@@ -84,3 +84,30 @@
     font-size: 16px;
     margin-bottom: 5px;
 }
+
+.marksOptions {
+    margin-top: 20px;
+}
+
+.marksOptions h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.marksOptions button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.marksOptions button:hover {
+    background-color: #45a049;
+}

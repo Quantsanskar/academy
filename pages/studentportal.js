@@ -10,7 +10,6 @@ import Tests from '../components/Tests';
 import Attendance from '../components/Attendance';
 import Marks from '../components/Marks';
 import Pyqs from '../components/pyqs';
-import Fees from '../components/Fees';
 
 const StudentPortal = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
@@ -63,7 +62,6 @@ const StudentPortal = () => {
                         <li onClick={() => handleSectionClick('attendance')}>Attendance</li>
                         <li onClick={() => handleSectionClick('marks')}>Marks</li>
                         <li onClick={() => handleSectionClick('pyqs')}>PYQs</li>
-                        <li onClick={() => handleSectionClick('feestatus')}>Fee Status</li>
                         <button onClick={handleLogout}>Log Out</button>
                     </ul>
                 </div>
@@ -84,7 +82,6 @@ const StudentPortal = () => {
                         {selectedSection === 'attendance' && <Attendance />}
                         {selectedSection === 'marks' && <Marks />}
                         {selectedSection === 'pyqs' && <Pyqs />}
-                        {selectedSection === 'fees' && <Fees />}
                         {/* Add content for other sections here */}
                     </div>
                 )}

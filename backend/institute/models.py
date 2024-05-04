@@ -35,6 +35,7 @@ class Student(models.Model):
     mobile = models.CharField(max_length=13, null=False, default="+91")
     par_mobile = models.CharField(max_length=13, null=False, default="+91")
     email = models.EmailField(max_length=254, null=False)
+    fees = models.CharField(max_length=56, null=False, default="paid")
 
 
 class Teacher(models.Model):

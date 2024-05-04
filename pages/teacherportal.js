@@ -7,6 +7,8 @@ const TeacherPortal = () => {
     const [selectedUsername, setSelectedUsername] = useState('');
     const [userData, setUserData] = useState(null);
     const [studentProfile, setStudentProfile] = useState(null);
+    const [selectedMarksOption, setSelectedMarksOption] = useState(null);
+    const [marksData, setMarksData] = useState(null);
 
     useEffect(() => {
         fetchStudents();
@@ -62,6 +64,19 @@ const TeacherPortal = () => {
         fetchUserData(username);
     };
 
+    const handleMarksOptionSelect = async (subject) => {
+        try {
+            const marksEndpoint = `http://127.0.0.1:8000/api/marks${subject}`;
+            const response = await axios.get(marksEndpoint);
+            const filteredMarksData = response.data.filter((data) => data.username === selectedUsername);
+            setMarksData(filteredMarksData);
+            setSelectedMarksOption(subject);
+        } catch (error) {
+            console.error('Error fetching marks data:', error.message);
+        }
+    };
+    
+
     return (
         <div className={styles.container}>
             <h1>Teacher Portal</h1>
@@ -81,6 +96,7 @@ const TeacherPortal = () => {
                     <h2>Student Profile</h2>
                     <p><strong>Name:</strong> {studentProfile.name}</p>
                     <p><strong>Username:</strong> {studentProfile.username}</p>
+                    <p><strong>Fee Status:</strong> {studentProfile.fees}</p>
                     <p><strong>Class:</strong> {studentProfile.clas}</p>
                     <p><strong>Stream:</strong> {studentProfile.stream}</p>
                     <p><strong>Subjects:</strong> {studentProfile.subjects}</p>
@@ -111,6 +127,26 @@ const TeacherPortal = () => {
                             <h4>Computer Science 12</h4>
                             <p>{userData.cs12 !== "Data not available" ? `Total Classes: ${userData.cs12.total_classes}, Classes Attended: ${userData.cs12.classes_attended}, Absent Days: ${userData.cs12.absent_days}, Absent Dates: ${userData.cs12.absent_date}` : "Data not available"}</p>
                         </div>
+                    </div>
+                </div>
+            )}
+            <div className={styles.marksOptions}>
+                <h3>Marks Options</h3>
+                <button onClick={() => handleMarksOptionSelect('chem11')}>Chemistry 11 Marks</button>
+                <button onClick={() => handleMarksOptionSelect('chem12')}>Chemistry 12 Marks</button>
+                <button onClick={() => handleMarksOptionSelect('cs11')}>Computer Science 11 Marks</button>
+                <button onClick={() => handleMarksOptionSelect('cs12')}>Computer Science 12 Marks</button>
+            </div>
+            {marksData && selectedMarksOption && (
+                <div className={styles.marksData}>
+                    <h3>{selectedMarksOption.toUpperCase()} Marks</h3>
+                    <div className={styles.marks}>
+                        {marksData.map((data, index) => (
+                            <div key={index}>
+                                <h4>{data.title}</h4>
+                                <p>Total Marks: {data.total_marks}, Marks Obtained: {data.marks_obtained}, Remarks: {data.remarks}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             )}
