@@ -1,5 +1,18 @@
 from django.contrib import admin
-from .models import User, Admin, Student, Teacher , AttendanceChem11, AttendanceChem12 , AttendanceCS11 , AttendanceCS12
+from .models import (
+    User,
+    Admin,
+    Student,
+    Teacher,
+    AttendanceChem11,
+    AttendanceChem12,
+    AttendanceCS11,
+    AttendanceCS12,
+    MarksChem11,
+    MarksChem12,
+    MarksCS11,
+    MarksCS12,
+)
 
 
 class InstituteModelAdmin(admin.ModelAdmin):
@@ -17,5 +30,7 @@ admin.site.register(AttendanceChem11)
 admin.site.register(AttendanceChem12)
 admin.site.register(AttendanceCS11)
 admin.site.register(AttendanceCS12)
-
-
+admin.site.register(MarksChem11)
+admin.site.register(MarksChem12)
+admin.site.register(MarksCS11)
+admin.site.register(MarksCS12)
