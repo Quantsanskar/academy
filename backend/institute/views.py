@@ -20,6 +20,10 @@ from .models import (
     AttendanceChem12,
     AttendanceCS11,
     AttendanceCS12,
+    MarksChem11,
+    MarksChem12,
+    MarksCS11,
+    MarksCS12,
 )
 from .serializers import (
     UserSerializer,
@@ -30,6 +34,10 @@ from .serializers import (
     AttendanceChem12Serializer,
     AttendanceCS11Serializer,
     AttendanceCS12Serializer,
+    MarksChem11Serializer,
+    MarksChem12Serializer,
+    MarksCS11Serializer,
+    MarksCS12Serializer,
 )
 
 from django.views.decorators.csrf import csrf_exempt
@@ -87,11 +95,11 @@ class AttendanceChem11ListAPIView(generics.ListCreateAPIView):
         try:
             student = AttendanceChem11.objects.get(username=username)
             if attendance_status == "present":
-                student.classes_attended = int(student.classes_attended)+1
-                student.total_classes = int(student.total_classes)+1
+                student.classes_attended = int(student.classes_attended) + 1
+                student.total_classes = int(student.total_classes) + 1
             else:
-                student.total_classes = int(student.total_classes)+1
-                student.absent_days = int(student.absent_days)+1
+                student.total_classes = int(student.total_classes) + 1
+                student.absent_days = int(student.absent_days) + 1
                 student.absent_date += f",{absent_date}"
             student.save()
             return JsonResponse(
@@ -117,11 +125,11 @@ class AttendanceChem12ListAPIView(generics.ListCreateAPIView):
         try:
             student = AttendanceChem12.objects.get(username=username)
             if attendance_status == "present":
-                student.classes_attended = int(student.classes_attended)+1
-                student.total_classes = int(student.total_classes)+1
+                student.classes_attended = int(student.classes_attended) + 1
+                student.total_classes = int(student.total_classes) + 1
             else:
-                student.total_classes = int(student.total_classes)+1
-                student.absent_days = int(student.absent_days)+1
+                student.total_classes = int(student.total_classes) + 1
+                student.absent_days = int(student.absent_days) + 1
                 student.absent_date += f",{absent_date}"
             student.save()
             return JsonResponse(
@@ -147,11 +155,11 @@ class AttendanceCS11ListAPIView(generics.ListCreateAPIView):
         try:
             student = AttendanceCS11.objects.get(username=username)
             if attendance_status == "present":
-                student.classes_attended = int(student.classes_attended)+1
-                student.total_classes = int(student.total_classes)+1
+                student.classes_attended = int(student.classes_attended) + 1
+                student.total_classes = int(student.total_classes) + 1
             else:
-                student.total_classes = int(student.total_classes)+1
-                student.absent_days = int(student.absent_days)+1
+                student.total_classes = int(student.total_classes) + 1
+                student.absent_days = int(student.absent_days) + 1
                 student.absent_date += f",{absent_date}"
             student.save()
             return JsonResponse(
@@ -177,11 +185,11 @@ class AttendanceCS12ListAPIView(generics.ListCreateAPIView):
         try:
             student = AttendanceCS12.objects.get(username=username)
             if attendance_status == "present":
-                student.classes_attended = int(student.classes_attended)+1
-                student.total_classes = int(student.total_classes)+1
+                student.classes_attended = int(student.classes_attended) + 1
+                student.total_classes = int(student.total_classes) + 1
             else:
-                student.total_classes = int(student.total_classes)+1
-                student.absent_days = int(student.absent_days)+1
+                student.total_classes = int(student.total_classes) + 1
+                student.absent_days = int(student.absent_days) + 1
                 student.absent_date += f",{absent_date}"
             student.save()
             return JsonResponse(
@@ -269,3 +277,87 @@ class SendEmailView(APIView):
             return response.Response(
                 {"error": "Invalid request data"}, status=status.HTTP_400_BAD_REQUEST
             )
+
+
+class MarksChem11ListAPIView(generics.ListCreateAPIView):
+    serializer_class = MarksChem11Serializer
+
+    def get_queryset(self):
+        return MarksChem11.objects.all()
+
+    def post(self, request):
+
+        username = request.data.get("username")
+        marks = request.data.get("marks")
+        try:
+            student = MarksChem11.objects.get(username=username)
+            student.marks = marks
+            student.save()
+            return JsonResponse({"message": "Marks updated successfully"}, status=200)
+        except MarksChem11.DoesNotExist:
+            return JsonResponse({"message": "Student not found"}, status=404)
+        else:
+            return JsonResponse({"message": "Invalid request method"}, status=405)
+
+
+class MarksChem12ListAPIView(generics.ListCreateAPIView):
+    serializer_class = MarksChem12Serializer
+
+    def get_queryset(self):
+        return MarksChem12.objects.all()
+
+    def post(self, request):
+
+        username = request.data.get("username")
+        marks = request.data.get("marks")
+        try:
+            student = MarksChem12.objects.get(username=username)
+            student.marks = marks
+            student.save()
+            return JsonResponse({"message": "Marks updated successfully"}, status=200)
+        except MarksChem12.DoesNotExist:
+            return JsonResponse({"message": "Student not found"}, status=404)
+        else:
+            return JsonResponse({"message": "Invalid request method"}, status=405)
+
+
+class MarksCS11ListAPIView(generics.ListCreateAPIView):
+    serializer_class = MarksCS11Serializer
+
+    def get_queryset(self):
+        return MarksCS11.objects.all()
+
+    def post(self, request):
+
+        username = request.data.get("username")
+        marks = request.data.get("marks")
+        try:
+            student = MarksCS11.objects.get(username=username)
+            student.marks = marks
+            student.save()
+            return JsonResponse({"message": "Marks updated successfully"}, status=200)
+        except MarksCS11.DoesNotExist:
+            return JsonResponse({"message": "Student not found"}, status=404)
+        else:
+            return JsonResponse({"message": "Invalid request method"}, status=405)
+
+
+class MarksCS12ListAPIView(generics.ListCreateAPIView):
+    serializer_class = MarksCS12Serializer
+
+    def get_queryset(self):
+        return MarksCS12.objects.all()
+
+    def post(self, request):
+
+        username = request.data.get("username")
+        marks = request.data.get("marks")
+        try:
+            student = MarksCS12.objects.get(username=username)
+            student.marks = marks
+            student.save()
+            return JsonResponse({"message": "Marks updated successfully"}, status=200)
+        except MarksCS12.DoesNotExist:
+            return JsonResponse({"message": "Student not found"}, status=404)
+        else:
+            return JsonResponse({"message": "Invalid request method"}, status=405)

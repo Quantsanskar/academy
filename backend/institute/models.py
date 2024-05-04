@@ -93,6 +93,7 @@ class AttendanceCS12(models.Model):
 class MarksChem11(models.Model):
     name = models.CharField(max_length=56, null=False, default="unknown")
     subject = models.CharField(max_length=56, null=False, default="unknown")
+    title = models.CharField(max_length=56, null=False, default="unknown")
     username = models.CharField(max_length=56, null=False, default="unknown")
     total_marks = models.CharField(max_length=56, null=False, default="unknown")
     marks_obtained = models.CharField(max_length=56, null=False, default="unknown")
@@ -103,6 +104,7 @@ class MarksChem11(models.Model):
 class MarksChem12(models.Model):
     name = models.CharField(max_length=56, null=False, default="unknown")
     subject = models.CharField(max_length=56, null=False, default="unknown")
+    title = models.CharField(max_length=56, null=False, default="unknown")
     username = models.CharField(max_length=56, null=False, default="unknown")
     total_marks = models.CharField(max_length=56, null=False, default="unknown")
     marks_obtained = models.CharField(max_length=56, null=False, default="unknown")
@@ -113,6 +115,7 @@ class MarksChem12(models.Model):
 class MarksCS11(models.Model):
     name = models.CharField(max_length=56, null=False, default="unknown")
     subject = models.CharField(max_length=56, null=False, default="unknown")
+    title = models.CharField(max_length=56, null=False, default="unknown")
     username = models.CharField(max_length=56, null=False, default="unknown")
     total_marks = models.CharField(max_length=56, null=False, default="unknown")
     marks_obtained = models.CharField(max_length=56, null=False, default="unknown")
@@ -123,6 +126,7 @@ class MarksCS11(models.Model):
 class MarksCS12(models.Model):
     name = models.CharField(max_length=56, null=False, default="unknown")
     subject = models.CharField(max_length=56, null=False, default="unknown")
+    title = models.CharField(max_length=56, null=False, default="unknown")
     username = models.CharField(max_length=56, null=False, default="unknown")
     total_marks = models.CharField(max_length=56, null=False, default="unknown")
     marks_obtained = models.CharField(max_length=56, null=False, default="unknown")
