@@ -64,8 +64,6 @@ const StudentPortal = () => {
                         <li onClick={() => handleSectionClick('marks')}>Marks</li>
                         <li onClick={() => handleSectionClick('pyqs')}>PYQs</li>
                         <li onClick={() => handleSectionClick('feestatus')}>Fee Status</li>
-                        <li onClick={() => handleSectionClick('batch')}>Batch Details</li>
-                        <li onClick={() => handleSectionClick('teachers')}>Teachers</li>
                         <button onClick={handleLogout}>Log Out</button>
                     </ul>
                 </div>
