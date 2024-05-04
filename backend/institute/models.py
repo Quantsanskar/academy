@@ -53,6 +53,7 @@ class AttendanceChem11(models.Model):
     total_classes = models.CharField(max_length=56, null=False, default="unknown")
     classes_attended = models.CharField(max_length=56, null=False, default="unknown")
     absent_days = models.CharField(max_length=56, null=False, default="unknown")
+    absent_date = models.CharField(max_length=56, null=False, default="unknown")
     mobile = models.CharField(max_length=13, null=False, default="+91")
 
 
@@ -63,6 +64,7 @@ class AttendanceChem12(models.Model):
     total_classes = models.CharField(max_length=56, null=False, default="unknown")
     classes_attended = models.CharField(max_length=56, null=False, default="unknown")
     absent_days = models.CharField(max_length=56, null=False, default="unknown")
+    absent_date = models.CharField(max_length=56, null=False, default="unknown")
     mobile = models.CharField(max_length=13, null=False, default="+91")
 
 
@@ -73,6 +75,7 @@ class AttendanceCS11(models.Model):
     total_classes = models.CharField(max_length=56, null=False, default="unknown")
     classes_attended = models.CharField(max_length=56, null=False, default="unknown")
     absent_days = models.CharField(max_length=56, null=False, default="unknown")
+    absent_date = models.CharField(max_length=56, null=False, default="unknown")
     mobile = models.CharField(max_length=13, null=False, default="+91")
 
 
@@ -83,6 +86,7 @@ class AttendanceCS12(models.Model):
     total_classes = models.CharField(max_length=56, null=False, default="unknown")
     classes_attended = models.CharField(max_length=56, null=False, default="unknown")
     absent_days = models.CharField(max_length=56, null=False, default="unknown")
+    absent_date = models.CharField(max_length=56, null=False, default="unknown")
     mobile = models.CharField(max_length=13, null=False, default="+91")
 
 
