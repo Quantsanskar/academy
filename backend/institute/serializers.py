@@ -1,5 +1,18 @@
 from rest_framework import serializers
-from .models import User, Admin, Student, Teacher, AttendanceChem11 , AttendanceChem12 , AttendanceCS11 , AttendanceCS12
+from .models import (
+    User,
+    Admin,
+    Student,
+    Teacher,
+    AttendanceChem11,
+    AttendanceChem12,
+    AttendanceCS11,
+    AttendanceCS12,
+    MarksChem11,
+    MarksChem12,
+    MarksCS11,
+    MarksCS12,
+)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -25,25 +38,58 @@ class TeacherSerializer(serializers.ModelSerializer):
         model = Teacher
         fields = "__all__"
 
+
 class AttendanceChem11Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = AttendanceChem11
         fields = "__all__"
 
+
 class AttendanceChem12Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = AttendanceChem12
         fields = "__all__"
+
+
 class AttendanceCS11Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = AttendanceCS11
         fields = "__all__"
+
+
 class AttendanceCS12Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = AttendanceCS12
         fields = "__all__"
 
+
+class MarksChem11Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MarksChem11
+        fields = "__all__"
+
+
+class MarksChem12Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MarksChem12
+        fields = "__all__"
+
+
+class MarksCS11Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MarksCS11
+        fields = "__all__"
+
+
+class MarksCS12Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MarksCS12
+        fields = "__all__"
