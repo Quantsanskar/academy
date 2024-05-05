@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 TWILIO_ACCOUNT_SID = "AC98836b5ddd3648eec8b6589f8f9ab47d"
-TWILIO_AUTH_TOKEN = "ac422cc664ed016e695e6048669a30ae"
+TWILIO_AUTH_TOKEN = "b856bca1d6ae6d78a2538312646b9106"
 from_phonenumber = +12564624142
 
 
