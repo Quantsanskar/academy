@@ -9,7 +9,7 @@ const Index = () => {
     const [programsVisible, setProgramsVisible] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    const images = ['/image1.png', '/image2.png', '/image3.png', '/image4.png'];
+    const images = ['/image1.png', '/image2.png', '/image3.png'];
 
     const router = useRouter();
 
