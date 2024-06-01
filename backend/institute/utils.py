@@ -21,7 +21,7 @@ def send_sms(phone_number, message):
 
 def send_email(body):
     sender_email = "querysendersp@gmail.com"
-    receiver_email = "studyphora@gmail.com"
+    receiver_email = "sanskarsrdav@gmail.com"
     password = "ijslzduzbpbqciva"
 
     message = MIMEMultipart()

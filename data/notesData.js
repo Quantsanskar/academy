@@ -12,7 +12,7 @@ const notesData = [
                         notes: [
                             {
                                 title: "Introduction to Chemistry",
-                                filePath: "/path/to/class11/chemistry/basic-concepts/introduction.pdf"
+                                filePath: "/Resume-Sanskar-Bhardwaj.pdf"
                             },
                             {
                                 title: "Atoms and Molecules",

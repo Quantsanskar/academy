@@ -1,124 +1,185 @@
 .container {
     background: linear-gradient(to right, #9b9b9b, #292828, #000000);
-    font-style: sytem-ui;
-}
-
-.headerLogo {
-    /* padding: 10px; */
-    margin-top: 5px;
-    /* Adjust margin top as needed */
-    margin-left: 20px;
-    /* Add margin left for spacing */
-    top: 0;
-    width: auto;
-    height: 75px;
-    /* Adjust height as needed */
-    position: fixed;
-
-}
-
-
-/* Navbar */
-.navbar {
-    background: #292828;
-    /* Gradient background */
-    position: fixed;
-
-    width: 100%;
-    height: 50px;
-    /* Adjust width as needed */
-    /* top: 0; */
-    left: 50%;
-    /* Center the navbar horizontally */
-    top: 0;
-
-    padding: 20px;
-    /* margin-top: 20px; */
-    transform: translateX(-50%);
-    /* Center the navbar horizontally */
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Add shadow for depth */
-    transition: background-color 0.3s, box-shadow 0.3s, width 0.3s;
-    /* Smooth transition */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.navList {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    margin-left: 150px;
+.headerLogo {
+    margin-top: 5px;
+    margin-left: 20px;
+    top: 0;
+    width: auto;
+    height: 75px;
+    position: fixed;
+}
+
+/* Navbar */
+.navbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #000000;
+    color: #f0f0f0;
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.hamburger {
+    /* display: none; */
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 1rem;
+    color: #ffffff;
+}
+
+.hamburgerIcon {
+    width: 25px;
+    height: 2px;
+    /* background-color: #a52424; */
+    /* color: #c40e0e; */
+    position: absolute;
+    transition: all 0.3s;
+}
+
+.hamburgerIcon::before,
+.hamburgerIcon::after {
+    content: '';
+    width: 30px;
+    height: 2px;
+    background-color: #ffffff;
+    position: absolute;
+    right: 40px;
+
+    transition: all 0.3s;
+}
+
+.hamburgerIcon::before {
+    top: -8px;
+}
+
+.hamburgerIcon::after {
+    bottom: -8px;
+}
+
+/* Toggle hamburger icon to X */
+.hamburger.open .hamburgerIcon {
+    background: transparent;
+}
+
+.hamburger.open .hamburgerIcon::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.hamburger.open .hamburgerIcon::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+.navList {
+    display: flex;
+    list-style: none;
+    transition: max-height 0.5s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.showMenu {
+    max-height: 500px;
+    /* Adjust as necessary to show the full menu */
 }
 
 .navList li {
-    margin-right: -20px;
-    margin-top: 10px;
-    background: #292828;
-    height: 30px;
-
+    margin-left: 2rem;
 }
 
-.navList li a {
-
-    color: #ffffff;
+.navList a {
     text-decoration: none;
-    padding: 5px 10px;
-    /* Increase padding for better touchability */
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-    /* Smooth transitions */
-}
-
-.navList li a:hover {
-    background: transparent;
-    color: #fff;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    transition: color 0.3s, box-shadow 0.3s;
-}
-
-
-/* Dropdown */
-.dropdown {
-    position: relative;
+    color: #fffafa;
 }
 
 .dropdownContent {
     display: none;
     position: absolute;
-    background: #292828;
-    min-width: 120px;
-    box-shadow: 0 4px 8px rgba(2, 2, 2, 0.1);
+    background-color: #000000;
+    color: whitesmoke;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
     z-index: 1;
-    padding: 10px;
-    border-radius: 5px;
-    transition: opacity 0.3s, transform 0.3s;
-    /* Smooth transitions */
-    transform-origin: top;
-    top: 100%;
 }
 
 .dropdown:hover .dropdownContent {
     display: block;
-    opacity: 1;
-    transform: translateY(0);
 }
 
-.dropdownContent a {
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 16px;
-    display: block;
-    transition: background-color 0.3s;
+/* Shutter animation */
+@keyframes shutter {
+    0% {
+        max-height: 0;
+    }
+
+    30% {
+        max-height: 20px;
+    }
+
+    60% {
+        max-height: 100px;
+    }
+
+    100% {
+        max-height: 500px;
+        /* Adjust as necessary to show the full menu */
+    }
 }
 
-.dropdownContent a:hover {
-    background-color: #555;
+.showMenu {
+    animation: shutter 0.5s forwards;
 }
 
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
 
+    .navList {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        background-color: #000000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .navList li {
+        margin: 1rem 0;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .dropdownContent {
+        position: relative;
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+
+    .navList {
+        max-height: none;
+        display: flex;
+    }
+}
 
 /* Slideshow Container */
 .slideshowContainer {
@@ -155,6 +216,19 @@
 
 .active {
     opacity: 1;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .slideshow {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slideshow {
+        height: 200px;
+    }
 }
 
 /* Overlay Text */
@@ -198,7 +272,7 @@
 
 .overlay button {
     padding: 10px 20px;
-    background: linear-gradient(to left, #9b9b9b, #292828,#000000);
+    background: linear-gradient(to left, #9b9b9b, #292828, #000000);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -208,12 +282,51 @@
 }
 
 .overlay button:hover {
-    background: linear-gradient(to right, #9b9b9b, #292828,#000000);
+    background: linear-gradient(to right, #9b9b9b, #292828, #000000);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .overlay {
+        padding: 15px;
+    }
 
+    .overlay h2 {
+        font-size: 20px;
+    }
 
+    .overlay p {
+        font-size: 14px;
+    }
+
+    .overlay button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .overlay {
+        padding: 10px;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .overlay h2 {
+        font-size: 18px;
+    }
+
+    .overlay p {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .overlay button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
 
 /* Admission Pamphlets Section */
 .admissionPamphlets {
@@ -222,18 +335,25 @@
     justify-content: space-between;
     align-items: center;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    /* Adjust as needed */
+    flex-wrap: wrap;
+    /* Added for responsiveness */
 }
 
 /* Left: Animated Admission Templates */
 .admissionTemplates {
     flex: 1;
+    margin-bottom: 20px;
+    /* Added for responsiveness */
 }
 
 .admissionImage {
     max-width: 100%;
+    width: 100%;
     height: auto;
     display: block;
+    margin-top: 15px;
+    right: 0;
+    left: 0;
 }
 
 /* Right: Attractive Container with Service Intro */
@@ -242,9 +362,10 @@
     flex: 1;
     padding: 20px;
     background: linear-gradient(to right, #9b9b9b, #292828, #3b3b3b);
-    /* Light background color */
     color: #ffffff;
     border-radius: 10px;
+    margin-bottom: 20px;
+    /* Added for responsiveness */
 }
 
 .servicesContainer h2 {
@@ -259,8 +380,7 @@
 
 .aboutUsButton {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: linear-gradient(to left, #9b9b9b, #292828,#000000);
-    /* Green background color */
+    background: linear-gradient(to left, #9b9b9b, #292828, #000000);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -268,30 +388,59 @@
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s;
-    
 }
 
 .aboutUsButton:hover {
-    background: linear-gradient(to right, #9b9b9b, #292828,#000000);
-    /* Darker green on hover */
+    background: linear-gradient(to right, #9b9b9b, #292828, #000000);
 }
 
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .admissionPamphlets {
+        flex-direction: column;
+        /* Stack items vertically on smaller screens */
+        margin-top: 100px;
+        /* Adjust top margin */
+    }
 
+    .admissionTemplates,
+    .servicesContainer {
+        flex: none;
+        /* Reset flex value */
+        width: 90%;
+        /* Make each item take full width */
+    }
+}
 
+@media (max-width: 480px) {
+    .servicesContainer h2 {
+        font-size: 1.2em;
+        /* Decrease heading font size */
+    }
 
+    .servicesContainer p {
+        font-size: 1em;
+        /* Decrease paragraph font size */
+    }
+
+    .aboutUsButton {
+        font-size: 0.9em;
+        /* Decrease button font size */
+        padding: 8px 16px;
+        /* Decrease button padding */
+    }
+}
 
 /* Why Choose A & G Section */
 .whyChoose {
-    background: linear-gradient(to left, #9b9b9b, #292828,#000000);
+    background: linear-gradient(to left, #9b9b9b, #292828, #000000);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-top: 0px;
-    /* Adjust margin top as needed */
     text-align: center;
+    padding: 20px;
 }
 
 .whyChoose h2 {
-  
-   
     text-align: center;
     font-size: 3em;
     color: #9fa078;
@@ -338,11 +487,37 @@
     }
 }
 
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .whyChoose h2 {
+        font-size: 2.4em;
+    }
+
+    .feature {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .whyChoose h2 {
+        font-size: 2em;
+    }
+
+    .features {
+        gap: 10px;
+    }
+
+    .feature {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
 /* Our Programs Section */
 .programsSection {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-top: 10px;
-    transform: translateY(50px);
+    transform: translateY(40px);
     transition: opacity 0.5s, transform 0.5s;
 }
 
@@ -369,7 +544,6 @@
     padding: 40px;
     border-radius: 20px;
     background-color: #252525;
-    /* Dark grey */
     color: #fff;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -384,7 +558,6 @@
 .exploreButton {
     background-color: #fff;
     color: #252525;
-    /* Dark grey */
     border: none;
     padding: 15px 30px;
     border-radius: 8px;
@@ -394,7 +567,6 @@
 
 .exploreButton:hover {
     background-color: #252525;
-    /* Dark grey */
     color: #fff;
 }
 
@@ -442,7 +614,85 @@
     transform: rotate(-3deg);
 }
 
-/* Our Testblazers */
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .programsHeadingContainer {
+        font-size: 28px;
+    }
+
+    .programsHeading {
+        font-size: 2.4em;
+    }
+
+    .programsContainer {
+        width: 90%;
+        padding: 30px;
+    }
+
+    .programsDescription {
+        font-size: 1em;
+    }
+
+    .exploreButton {
+        padding: 12px 24px;
+        font-size: 0.9em;
+    }
+
+    .studentJourney {
+        height: 400px;
+    }
+
+    .slogan {
+        padding: 20px;
+    }
+
+    .slogan p {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .slogan p p {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .programsHeadingContainer {
+        font-size: 24px;
+    }
+
+    .programsHeading {
+        font-size: 2em;
+    }
+
+    .programsContainer {
+        padding: 20px;
+    }
+
+    .exploreButton {
+        padding: 10px 20px;
+        font-size: 0.8em;
+    }
+
+    .studentJourney {
+        height: 300px;
+    }
+
+    .slogan {
+        padding: 15px;
+    }
+
+    .slogan p {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .slogan p p {
+        font-size: 20px;
+    }
+}
+
+/* Our Trailblazers */
 .trailBlazersSection {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: center;
@@ -477,7 +727,7 @@
 
 .profileImage {
     width: 100%;
-    height: 200px;
+    height: 350px;
     object-fit: cover;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -504,8 +754,38 @@
     font-size: 1.5em;
 }
 
-/* CSS Styles for Footer */
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .sectionHeading {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
 
+    .profile {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .sectionHeading {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .profile {
+        width: 100%;
+    }
+
+    .profileDetails h3 {
+        font-size: 1.5em;
+    }
+
+    .feedback {
+        font-size: 1.2em;
+    }
+}
+
+/* CSS Styles for Footer */
 .footer {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: #333;
@@ -518,6 +798,7 @@
     align-items: flex-start;
     max-width: 1200px;
     margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 .contactUs,
@@ -526,13 +807,13 @@
     flex: 1;
     padding: 0 20px;
     color: #fff;
+    margin-bottom: 30px;
 }
 
 .contactUs h3,
 .policies h3,
 .license h3 {
-    font-size:
-        1.5em;
+    font-size: 1.5em;
     margin-bottom: 20px;
 }
 
@@ -564,7 +845,6 @@
     text-align: center;
     margin-top: 20px;
     color: #fff;
-
 }
 
 .copyright p {
@@ -572,4 +852,23 @@
     margin-top: 90px;
     margin-bottom: 0;
     color: #fff;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .footerContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contactUs,
+    .policies,
+    .license {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .copyright p {
+        margin-top: 20px;
+    }
 }

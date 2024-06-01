@@ -8,6 +8,7 @@ const Index = () => {
     const [whyChooseVisible, setWhyChooseVisible] = useState(false);
     const [programsVisible, setProgramsVisible] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [menuOpen, setMenuOpen] = useState(false); // State for mobile menu
 
     const images = ['/image1.png', '/image2.png', '/image3.png'];
 
@@ -63,7 +64,10 @@ const Index = () => {
                     <div className={styles.logo}>
                         <img src="/ag_logo.png" alt="A and G Academy Logo" className={styles.headerLogo} />
                     </div>
-                    <ul className={styles.navList}>
+                    <button className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
+                        <span className={styles.hamburgerIcon}></span>
+                    </button>
+                    <ul className={`${styles.navList} ${menuOpen ? styles.showMenu : ''}`}>
                         <li><a href="#">Home</a></li>
                         <li><Link href="/AboutPage">About A&G</Link></li>
                         <li><Link href="/agresults">A&G Results</Link></li>
@@ -94,7 +98,7 @@ const Index = () => {
                                 <div className={styles.overlay}>
                                     <h2>Discover Something Amazing</h2>
                                     <p>Explore our programs and unlock your potential</p>
-                                    <button className={styles.exploreButton} onClick={()=>router.push('/agresults')}>Explore Now</button>
+                                    <button className={styles.exploreButton} onClick={() => router.push('/agresults')}>Explore Now</button>
                                 </div>
                             </div>
                         ))}
