@@ -1,62 +1,84 @@
-/* StudentPortal.css */
-
 .container {
     display: flex;
-    height: 100vh;
-    overflow: hidden;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .nav {
-    position: relative;
-    width: 220px;
     background-color: #292929;
     color: #fff;
-    padding-top: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav ul li {
+    margin-right: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav ul li:hover {
+    color: #f0f0f0;
 }
 
 .navPanel {
+    background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
     height: 100%;
-    width: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    transition: width 0.3s;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
 }
 
 .navPanel ul {
     list-style-type: none;
     padding: 0;
-    margin-top: 50px;
+    margin: 0;
+    background-color: #292929;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .navPanel ul li {
-    text-align: right;
-    width: 100px;
-    padding: 10px 20px;
+    text-align: center;
+    padding: 10px;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .navPanel ul li:hover {
-    color: red;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
 .navPanel ul button {
-    margin-left: 30px;
-    padding: 5px 40px;
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
     color: #fff;
     cursor: pointer;
     background-color: #222;
     transition: background-color 0.3s;
+    border: none;
+    border-radius: 4px;
 }
 
 .navPanel ul button:hover {
-    box-shadow: #f0f0f0;
-    background-color: antiquewhite;
-    color: #222;
+    background-color: #444;
 }
 
 .mainContent {
@@ -64,12 +86,15 @@
     padding: 20px;
     background-color: #333;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.sectionContent1{
+.sectionContent1,
+.sectionContent2 {
     max-width: 800px;
-    margin-top: 20%;
-    margin-left: 10%;
+    margin: 20px 0;
     padding: 20px;
     border: 1px solid #555;
     border-radius: 8px;
@@ -77,13 +102,86 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     color: #fff;
 }
-.sectionContent2{
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #555;
-    border-radius: 8px;
-    background-color: #444;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+.sectionContent2 {
+    margin-left: 20px;
     color: #21df14;
+}
+
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+@media (max-width: 1200px) {
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav ul {
+        margin-top: 10px;
+        display: none;
+        gap: 0;
+        /* Remove space between nav items on small screens */
+    }
+
+    .navPanel ul {
+        width: 80%;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .change .bar:nth-child(1) {
+        transform: translate(0, 8px) rotate(45deg);
+    }
+
+    .change .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .change .bar:nth-child(3) {
+        transform: translate(0, -8px) rotate(-45deg);
+    }
+
+    .navPanel {
+        display: none;
+    }
+
+    .navPanel.open {
+        display: flex;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+}
+.logout{
+    background-color: #000000;
+    margin-left: 130vh;
+    display: flex;
+    text-align: center;
+    cursor: pointer;
+    padding: 4px;
+    padding-right: 12px;
+    top: 0;
+    color: #fff;
 }
