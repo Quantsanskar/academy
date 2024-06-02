@@ -1,10 +1,10 @@
 /* TeacherPortal.module.css */
-
 .container {
     font-family: Arial, sans-serif;
     color: #fff;
     background-color: #111;
-    padding: 20px;
+    padding: 30px;
+    margin: 0;
 }
 
 .container h1 {
@@ -108,6 +108,51 @@
     border-radius: 5px;
 }
 
+
+
 .marksOptions button:hover {
     background-color: #45a049;
+}
+
+.nav {
+    background-color: #111;
+    /* Dark blue background */
+    padding: 10px 20px;
+    /* Padding around the navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Slight shadow for depth */
+    display: flex;
+    justify-content: flex-start;
+    /* Align items to the right */
+}
+
+.navpanel {
+    display: flex;
+    align-items: center;
+}
+
+.nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav button {
+    background-color: #ff4081;
+    /* Pink background for the button */
+    color: white;
+    /* White text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav button:hover {
+    background-color: #f50057;
+    /* Darker pink on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Shadow effect on hover */
 }

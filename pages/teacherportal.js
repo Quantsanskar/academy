@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from "../styles/TeacherPortal.module.css";
+import { useRouter } from 'next/router';
 
 const TeacherPortal = () => {
     const [students, setStudents] = useState([]);
@@ -9,6 +10,7 @@ const TeacherPortal = () => {
     const [studentProfile, setStudentProfile] = useState(null);
     const [selectedMarksOption, setSelectedMarksOption] = useState(null);
     const [marksData, setMarksData] = useState(null);
+    const router=useRouter('')
 
     useEffect(() => {
         fetchStudents();
@@ -63,6 +65,7 @@ const TeacherPortal = () => {
         setSelectedUsername(username);
         fetchUserData(username);
     };
+    
 
     const handleMarksOptionSelect = async (subject) => {
         try {
@@ -75,10 +78,38 @@ const TeacherPortal = () => {
             console.error('Error fetching marks data:', error.message);
         }
     };
-    
+    const handleLogout = () => {
+        router.push('/');
+        localStorage.clear();
 
+    };
+
+    useEffect(() => {
+        const checkAuthentication = async () => {
+            try {
+                // Check if user is authenticated (you need to implement this logic)
+                const isAuthenticated = localStorage.getItem('username'); // Example: Check for authentication token
+
+                if (!isAuthenticated) {
+                    router.push('/'); // Redirect to sign-in page if not authenticated
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+        // Check authentication when the component mounts
+        checkAuthentication();
+    }, [router]);
     return (
         <div className={styles.container}>
+            <div className={styles.nav}>
+                <div className={styles.navpanel}>
+                    <ul>
+                        <button onClick={handleLogout}>Log Out</button>
+                    </ul>
+                </div>
+            </div>
             <h1>Teacher Portal</h1>
             <div className={styles.dropdown}>
                 <label htmlFor="username">Select Username:</label>
