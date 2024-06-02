@@ -83,7 +83,7 @@ const Index = () => {
                                 <Link href="/adminsignin">Admin Portal</Link>
                             </div>
                         </li>
-                        <li><Link href="/teacherportal">TeacherPortal</Link></li>
+                        <li><Link href="/teachersignin">TeacherPortal</Link></li>
                         <li><a href="/Contact">Contact Us</a></li>
                     </ul>
                 </nav>

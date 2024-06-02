@@ -1,0 +1,13 @@
+/* styles/global.css */
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Raleway', sans-serif;
+}
