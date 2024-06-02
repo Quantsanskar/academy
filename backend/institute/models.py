@@ -41,6 +41,8 @@ class Student(models.Model):
 class Teacher(models.Model):
     name = models.CharField(max_length=56, null=False, default="unknown")
     subject = models.CharField(max_length=56, null=False, default="unknown")
+    username=models.CharField(max_length=56, null=False, default="unknown")
+    password=models.CharField(max_length=56, null=False, default="unknown")
     experience = models.CharField(max_length=56, null=False, default="unknown")
     institutes = models.CharField(max_length=56, null=False, default="unknown")
     achievements = models.CharField(max_length=56, null=False, default="unknown")
