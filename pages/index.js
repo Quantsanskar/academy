@@ -50,6 +50,11 @@ const Index = () => {
         const interval = setInterval(slideImages, 5000);
         return () => clearInterval(interval);
     }, []);
+    const gotosignin = () => {
+        if (typeof window !== 'undefined') {
+            window.location.href = "/myfile.html";
+        }
+    };
 
     return (
         <>
@@ -161,7 +166,8 @@ const Index = () => {
                         <p className={styles.programsDescription}>
                             Learn from our comprehensive classroom programs designed to help you achieve your academic goals. Our expert faculty and personalized approach ensure the best learning experience for every student.
                         </p>
-                        <button className={styles.exploreButton} onClick={() => router.push('/studentsignin')}>SIGN IN</button>
+                        <button className={styles.exploreButton} onClick={gotosignin}>SIGN IN</button>
+
                     </div>
                 </div>
 
