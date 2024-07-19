@@ -8,19 +8,20 @@ import Tests from '../components/Tests';
 import Attendance from '../components/Attendance';
 import Marks from '../components/Marks';
 import Pyqs from '../components/pyqs';
+import PerformanceGraph from '../components/PerformanceGraph';
 
 const StudentPortal = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [selectedSection, setSelectedSection] = useState('');
     const [filteredLectures, setFilteredLectures] = useState([]);
-    const [hamburgerClass, setHamburgerClass] = useState('');
+    const [studentData, setStudentData] = useState(null);
+    const [performanceData, setPerformanceData] = useState([]);
 
     const router = useRouter();
 
     const handleSectionClick = (section) => {
         setSelectedSection(section);
         setIsNavOpen(false);
-        setHamburgerClass('');
         if (section === 'lectures') {
             setFilteredLectures(LectureData);
         } else {
@@ -35,16 +36,41 @@ const StudentPortal = () => {
 
     const toggleNavPanel = () => {
         setIsNavOpen(!isNavOpen);
-        setHamburgerClass(!isNavOpen ? 'change' : '');
     };
 
     useEffect(() => {
         const checkAuthentication = async () => {
             try {
-                const isAuthenticated = localStorage.getItem('username');
+                const username = localStorage.getItem('username');
 
-                if (!isAuthenticated) {
+                if (!username) {
                     router.push('/');
+                } else {
+                    // Fetch student data
+                    const studentResponse = await fetch(`http://127.0.0.1:8000/api/student`);
+                    const studentData = await studentResponse.json();
+                    const student = studentData.find(s => s.username === username);
+                    setStudentData(student);
+
+                    if (student) {
+                        // Manually set API endpoints
+                        const apiEndpoints = [
+                            'http://127.0.0.1:8000/api/markschem11',
+                            'http://127.0.0.1:8000/api/markschem12',
+                            'http://127.0.0.1:8000/api/markscs11',
+                            'http://127.0.0.1:8000/api/markscs12'
+                        ];
+
+                        // Fetch performance data
+                        const performancePromises = apiEndpoints.map(async endpoint => {
+                            const response = await fetch(endpoint);
+                            const data = await response.json();
+                            return data.filter(entry => entry.username === username);
+                        });
+
+                        const performanceResults = await Promise.all(performancePromises);
+                        setPerformanceData(performanceResults.flat());
+                    }
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -55,24 +81,25 @@ const StudentPortal = () => {
     }, [router]);
 
     return (
-        <div className={`${styles.globalReset} ${styles.container}`}>
+        <div className={styles.container}>
             <div className={styles.nav}>
                 <div
-                    className={`${styles.hamburger} ${hamburgerClass}`}
+                    className={`${styles.hamburger} ${isNavOpen ? styles.open : ''}`}
                     onClick={toggleNavPanel}
                 >
-                    <div className={styles.bar}></div>
-                    <div className={styles.bar}></div>
-                    <div className={styles.bar}></div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-                <ul>
+                <ul className={styles.navList}>
                     <li onClick={() => handleSectionClick('notes')}>Notes</li>
                     <li onClick={() => handleSectionClick('lectures')}>Lectures</li>
                     <li onClick={() => handleSectionClick('tests')}>Tests</li>
                     <li onClick={() => handleSectionClick('attendance')}>Attendance</li>
                     <li onClick={() => handleSectionClick('marks')}>Marks</li>
                     <li onClick={() => handleSectionClick('pyqs')}>PYQs</li>
-                    <button onClick={handleLogout} className={styles.logout}>Log Out</button>
+                    <li onClick={() => handleSectionClick('performance')}>Performance</li>
+                    <li><button onClick={handleLogout} className={styles.logout}>Log Out</button></li>
                 </ul>
             </div>
             <div
@@ -85,18 +112,19 @@ const StudentPortal = () => {
                     <li onClick={() => handleSectionClick('attendance')}>Attendance</li>
                     <li onClick={() => handleSectionClick('marks')}>Marks</li>
                     <li onClick={() => handleSectionClick('pyqs')}>PYQs</li>
-                    <button onClick={handleLogout} className={styles.logout}>Log Out</button>
+                    <li onClick={() => handleSectionClick('performance')}>Performance</li>
+                    <li><button onClick={handleLogout} className={styles.logout}>Log Out</button></li>
                 </ul>
             </div>
             <div className={styles.mainContent}>
                 {!selectedSection && (
-                    <div className={styles.sectionContent1}>
+                    <div className={styles.sectionContent}>
                         <h2>Welcome to the Student Portal!</h2>
                         <p>Please select a section from the navigation panel to get started.</p>
                     </div>
                 )}
                 {selectedSection && (
-                    <div className={styles.sectionContent2}>
+                    <div className={styles.sectionContent}>
                         <h2>
                             {selectedSection.charAt(0).toUpperCase() +
                                 selectedSection.slice(1)}
@@ -109,7 +137,9 @@ const StudentPortal = () => {
                         {selectedSection === 'attendance' && <Attendance />}
                         {selectedSection === 'marks' && <Marks />}
                         {selectedSection === 'pyqs' && <Pyqs />}
-                        {/* Add content for other sections here */}
+                        {selectedSection === 'performance' && (
+                            <PerformanceGraph data={performanceData} />
+                        )}
                     </div>
                 )}
             </div>

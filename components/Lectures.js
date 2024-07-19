@@ -1,3 +1,4 @@
+// Lectures.js
 import { useState, useEffect } from 'react';
 import styles from '../styles/Lectures.module.css';
 import lectureData from '../data/lectureData';
@@ -8,6 +9,7 @@ const Lectures = () => {
     const [showChooseClassMsg, setShowChooseClassMsg] = useState(true);
     const [selectedLecture, setSelectedLecture] = useState(null);
     const [userData, setUserData] = useState(null);
+    const [activeSubject, setActiveSubject] = useState(null);
 
     useEffect(() => {
         fetchUserData();
@@ -55,38 +57,51 @@ const Lectures = () => {
                 }
             });
             setFilteredLectures(filteredLecturesData);
+            setActiveSubject(filteredLecturesData[0]?.subject);
         }
     }, [userData]);
 
     return (
         <div className={styles.lecturesContainer}>
-            <div className={styles.chooseClass}>
-                <label htmlFor="classSelect">Choose a class:</label>
-                <select id="classSelect" value={selectedClass}>
-                    <option value="11">Class 11</option>
-                    <option value="12">Class 12</option>
-                </select>
-                {showChooseClassMsg && <p>Please choose your class.</p>}
-            </div>
+            <header className={styles.header}>
+                <h1>My Lectures</h1>
+                <div className={styles.classSelector}>
+                    <select value={selectedClass} onChange={(e) => setSelectedClass(e.target.value)}>
+                        <option value="">Select Class</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+            </header>
 
-            <div className={styles.lecturesList}>
-                {filteredLectures.map((subjectData, index) => (
-                    <div key={index}>
-                        <h2>{subjectData.subject}</h2>
-                        {subjectData.lectures.map((lecture, lectureIndex) => (
-                            <div key={lectureIndex} className={styles.lectureItem}>
-                                <h3>{lecture.title}</h3>
-                                <button onClick={() => openLecture(lecture)}>Watch Video</button>
-                            </div>
-                        ))}
-                    </div>
-                ))}
-            </div>
+            <main className={styles.mainContent}>
+                <nav className={styles.subjectNav}>
+                    {filteredLectures.map((subjectData, index) => (
+                        <button
+                            key={index}
+                            className={`${styles.subjectButton} ${activeSubject === subjectData.subject ? styles.active : ''}`}
+                            onClick={() => setActiveSubject(subjectData.subject)}
+                        >
+                            {subjectData.subject}
+                        </button>
+                    ))}
+                </nav>
+
+                <section className={styles.lecturesList}>
+                    {filteredLectures.find(s => s.subject === activeSubject)?.lectures.map((lecture, lectureIndex) => (
+                        <div key={lectureIndex} className={styles.lectureItem}>
+                            <h3>{lecture.title}</h3>
+                            <button onClick={() => openLecture(lecture)}>Watch Video</button>
+                        </div>
+                    ))}
+                </section>
+            </main>
 
             {selectedLecture && (
                 <div className={styles.lectureModal}>
                     <div className={styles.modalContent}>
-                        <button className={styles.closeButton} onClick={closeLecture}>Close</button>
+                        <button className={styles.closeButton} onClick={closeLecture}>×</button>
+                        <h2>{selectedLecture.title}</h2>
                         <video className={styles.videoPlayer} controls controlsList='nodownload'>
                             <source src={selectedLecture.videoUrl} type="video/mp4" />
                             Your browser does not support the video tag.

@@ -1,86 +1,102 @@
-/* AdminPortal.module.css */
-
 .container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f0f4f8;
+    font-family: 'Arial', sans-serif;
 }
 
-.nav {
-    background-color: #1a1a1a;
-    color: #fff;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.loginContainer {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
 }
 
-.navPanel ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+.loginContainer h1 {
+    color: #4a4a4a;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
 }
 
-.navPanel li {
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: color 0.3s ease;
+.loginContainer form {
+    display: flex;
+    flex-direction: column;
 }
 
-.navPanel li:hover {
-    color: #ff4d4f;
+.loginContainer input {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
-.navPanel button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #ff4d4f;
+.loginContainer button {
+    background-color: #3498db;
+    color: white;
+    padding: 0.8rem;
     border: none;
-    color: #fff;
+    border-radius: 5px;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.navPanel button:hover {
-    background-color: #f5222d;
+.loginContainer button:hover {
+    background-color: #2980b9;
 }
 
-.mainContent {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+.error {
+    color: #e74c3c;
+    text-align: center;
+    margin-top: 1rem;
 }
 
-.sectionContent {
-    max-width: 800px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.disclaimer {
+    background-color: #ecf0f1;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
 }
 
-.sectionContent h2 {
-    margin-bottom: 10px;
-    color: #333;
+.disclaimer h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
 }
 
-.sectionContent p {
-    margin-bottom: 20px;
-    color: #666;
+.disclaimer p {
+    color: #34495e;
+    margin-bottom: 1rem;
 }
 
-.navPanel {
-    position: absolute;
-    top: 100px;
-    left: 20px;
-    background-color: #1a1a1a;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    
+.disclaimer ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.navPanelOpen {
-    display: block;
+.disclaimer li {
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .loginContainer,
+    .disclaimer {
+        padding: 1.5rem;
+    }
 }

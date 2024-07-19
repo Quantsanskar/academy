@@ -1,35 +1,91 @@
+/* Lectures.module.css */
 .lecturesContainer {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    font-family: 'Arial', sans-serif;
 }
 
-.chooseClass {
-    margin-bottom: 20px;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.classSelector select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.mainContent {
+    display: flex;
+    gap: 30px;
+}
+
+.subjectNav {
+    flex: 0 0 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.subjectButton {
+    padding: 10px;
+    font-size: 1rem;
+    text-align: left;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.subjectButton:hover, .subjectButton.active {
+    background-color: #007bff;
+    color: white;
 }
 
 .lecturesList {
+    flex: 1;
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
 
 .lectureItem {
-    background-color: #f4f4f4;
+    background-color: #fff;
+    border-radius: 10px;
     padding: 20px;
-    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.lectureItem:hover {
+    transform: translateY(-5px);
 }
 
 .lectureItem h3 {
-    margin-top: 0;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #333;
 }
 
 .lectureItem button {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .lectureItem button:hover {
@@ -42,7 +98,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,27 +106,42 @@
 
 .modalContent {
     background-color: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    max-width: 800px;
+    width: 90%;
 }
 
 .closeButton {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
     position: absolute;
     top: 10px;
     right: 10px;
-}
-
-.closeButton:hover {
-    background-color: #bd2130;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .videoPlayer {
     width: 100%;
-    max-width: 600px;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .mainContent {
+        flex-direction: column;
+    }
+
+    .subjectNav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        flex: 1 1 auto;
+    }
+
+    .subjectButton {
+        flex: 0 0 auto;
+        height: max-content;
+    }
 }

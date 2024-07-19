@@ -1,41 +1,110 @@
-/* Attendance.module.css */
-
 .attendanceContainer {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.userInfo {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.userInfo p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.userInfo span {
+    font-weight: bold;
+    color: #4a4a4a;
 }
 
 .subjectSection {
     margin-bottom: 30px;
 }
 
-.attendanceData {
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    padding: 20px;
+.subjectTitle {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
     margin-bottom: 15px;
 }
 
-.attendanceData h3 {
-    color: #333;
+.attendanceCard {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.attendanceCard:hover {
+    transform: translateY(-5px);
+}
+
+.attendanceHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.attendanceHeader h3 {
+    color: #3498db;
+    margin: 0;
+}
+
+.mobile {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.attendanceStats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.statItem {
+    text-align: center;
+    flex: 1;
+}
+
+.statLabel {
+    display: block;
+    font-size: 14px;
+    color: #7f8c8d;
     margin-bottom: 5px;
 }
 
-.attendanceData h4 {
-    color: #666;
-    margin-bottom: 10px;
+.statValue {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
 }
 
-.attendanceData p {
-    margin: 5px 0;
-    color: #555;
+.absentDates {
+    font-size: 14px;
+    color: #7f8c8d;
 }
 
-.attendanceData p:first-child {
-    margin-top: 10px;
+.absentLabel {
+    font-weight: bold;
+    margin-right: 5px;
 }
 
-.attendanceData p:last-child {
-    margin-bottom: 10px;
+.absentValue {
+    color: #e74c3c;
 }
 
 @media (max-width: 768px) {
@@ -43,7 +112,11 @@
         padding: 10px;
     }
 
-    .attendanceData {
-        padding: 15px;
+    .attendanceStats {
+        flex-direction: column;
+    }
+
+    .statItem {
+        margin-bottom: 10px;
     }
 }

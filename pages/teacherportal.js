@@ -2,18 +2,39 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from "../styles/TeacherPortal.module.css";
 import { useRouter } from 'next/router';
+import { Line } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
 const TeacherPortal = () => {
     const [students, setStudents] = useState([]);
     const [selectedUsername, setSelectedUsername] = useState('');
     const [userData, setUserData] = useState(null);
     const [studentProfile, setStudentProfile] = useState(null);
-    const [selectedMarksOption, setSelectedMarksOption] = useState(null);
-    const [marksData, setMarksData] = useState(null);
-    const router=useRouter('')
+    const [performanceData, setPerformanceData] = useState(null);
+    const router = useRouter();
 
     useEffect(() => {
         fetchStudents();
+        checkAuthentication();
     }, []);
 
     const fetchStudents = async () => {
@@ -56,6 +77,23 @@ const TeacherPortal = () => {
 
             const profileData = students.find((student) => student.username === username);
             setStudentProfile(profileData);
+
+            // Fetch performance data
+            const performanceEndpoints = [
+                'http://127.0.0.1:8000/api/markschem11',
+                'http://127.0.0.1:8000/api/markschem12',
+                'http://127.0.0.1:8000/api/markscs11',
+                'http://127.0.0.1:8000/api/markscs12'
+            ];
+
+            const performancePromises = performanceEndpoints.map(async endpoint => {
+                const response = await axios.get(endpoint);
+                return response.data.filter(entry => entry.username === username);
+            });
+
+            const performanceResults = await Promise.all(performancePromises);
+            setPerformanceData(performanceResults.flat());
+
         } catch (error) {
             console.error('Error fetching user data:', error.message);
         }
@@ -65,122 +103,146 @@ const TeacherPortal = () => {
         setSelectedUsername(username);
         fetchUserData(username);
     };
-    
 
-    const handleMarksOptionSelect = async (subject) => {
-        try {
-            const marksEndpoint = `http://127.0.0.1:8000/api/marks${subject}`;
-            const response = await axios.get(marksEndpoint);
-            const filteredMarksData = response.data.filter((data) => data.username === selectedUsername);
-            setMarksData(filteredMarksData);
-            setSelectedMarksOption(subject);
-        } catch (error) {
-            console.error('Error fetching marks data:', error.message);
-        }
-    };
     const handleLogout = () => {
         router.push('/');
         localStorage.clear();
-
     };
 
-    useEffect(() => {
-        const checkAuthentication = async () => {
-            try {
-                // Check if user is authenticated (you need to implement this logic)
-                const isAuthenticated = localStorage.getItem('username'); // Example: Check for authentication token
+    const checkAuthentication = () => {
+        const isAuthenticated = localStorage.getItem('username');
+        if (!isAuthenticated) {
+            router.push('/');
+        }
+    };
 
-                if (!isAuthenticated) {
-                    router.push('/'); // Redirect to sign-in page if not authenticated
-                }
-            } catch (error) {
-                console.error('Error:', error);
+    const getChartData = () => {
+        if (!performanceData) return null;
+
+        const labels = performanceData.map(data => data.title);
+        const datasets = [
+            {
+                label: 'Marks Obtained',
+                data: performanceData.map(data => data.marks_obtained),
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            },
+            {
+                label: 'Total Marks',
+                data: performanceData.map(data => data.total_marks),
+                borderColor: 'rgb(255, 99, 132)',
+                tension: 0.1
             }
-        };
+        ];
 
-        // Check authentication when the component mounts
-        checkAuthentication();
-    }, [router]);
+        return { labels, datasets };
+    };
+
+    const chartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Student Performance',
+            },
+        },
+    };
+
     return (
         <div className={styles.container}>
-            <div className={styles.nav}>
-                <div className={styles.navpanel}>
-                    <ul>
-                        <button onClick={handleLogout}>Log Out</button>
-                    </ul>
-                </div>
-            </div>
-            <h1>Teacher Portal</h1>
-            <div className={styles.dropdown}>
-                <label htmlFor="username">Select Username:</label>
-                <select id="username" onChange={(e) => handleUsernameSelect(e.target.value)}>
-                    <option value="">Select...</option>
-                    {students.map((student) => (
-                        <option key={student.username} value={student.username}>
-                            {student.name} ({student.username})
-                        </option>
-                    ))}
-                </select>
-            </div>
-            {studentProfile && (
-                <div className={styles.profile}>
-                    <h2>Student Profile</h2>
-                    <p><strong>Name:</strong> {studentProfile.name}</p>
-                    <p><strong>Username:</strong> {studentProfile.username}</p>
-                    <p><strong>Fee Status:</strong> {studentProfile.fees}</p>
-                    <p><strong>Class:</strong> {studentProfile.clas}</p>
-                    <p><strong>Stream:</strong> {studentProfile.stream}</p>
-                    <p><strong>Subjects:</strong> {studentProfile.subjects}</p>
-                    <p><strong>Mobile:</strong> {studentProfile.mobile}</p>
-                    <p><strong>Parent's Mobile:</strong> {studentProfile.par_mobile}</p>
-                    <p><strong>Email:</strong> {studentProfile.email}</p>
-                </div>
-            )}
-            {userData && (
-                <div className={styles.userData}>
-                    <h2>User Data</h2>
-                    <p><strong>Username:</strong> {selectedUsername}</p>
-                    <h3>Attendance</h3>
-                    <div className={styles.attendance}>
-                        <div>
-                            <h4>Chemistry 11</h4>
-                            <p>{userData.chem11 !== "Data not available" ? `Total Classes: ${userData.chem11.total_classes}, Classes Attended: ${userData.chem11.classes_attended}, Absent Days: ${userData.chem11.absent_days}, Absent Dates: ${userData.chem11.absent_date}` : "Data not available"}</p>
-                        </div>
-                        <div>
-                            <h4>Chemistry 12</h4>
-                            <p>{userData.chem12 !== "Data not available" ? `Total Classes: ${userData.chem12.total_classes}, Classes Attended: ${userData.chem12.classes_attended}, Absent Days: ${userData.chem12.absent_days}, Absent Dates: ${userData.chem12.absent_date}` : "Data not available"}</p>
-                        </div>
-                        <div>
-                            <h4>Computer Science 11</h4>
-                            <p>{userData.cs11 !== "Data not available" ? `Total Classes: ${userData.cs11.total_classes}, Classes Attended: ${userData.cs11.classes_attended}, Absent Days: ${userData.cs11.absent_days}, Absent Dates: ${userData.cs11.absent_date}` : "Data not available"}</p>
-                        </div>
-                        <div>
-                            <h4>Computer Science 12</h4>
-                            <p>{userData.cs12 !== "Data not available" ? `Total Classes: ${userData.cs12.total_classes}, Classes Attended: ${userData.cs12.classes_attended}, Absent Days: ${userData.cs12.absent_days}, Absent Dates: ${userData.cs12.absent_date}` : "Data not available"}</p>
-                        </div>
-                    </div>
-                </div>
-            )}
-            <div className={styles.marksOptions}>
-                <h3>Marks Options</h3>
-                <button onClick={() => handleMarksOptionSelect('chem11')}>Chemistry 11 Marks</button>
-                <button onClick={() => handleMarksOptionSelect('chem12')}>Chemistry 12 Marks</button>
-                <button onClick={() => handleMarksOptionSelect('cs11')}>Computer Science 11 Marks</button>
-                <button onClick={() => handleMarksOptionSelect('cs12')}>Computer Science 12 Marks</button>
-            </div>
-            {marksData && selectedMarksOption && (
-                <div className={styles.marksData}>
-                    <h3>{selectedMarksOption.toUpperCase()} Marks</h3>
-                    <div className={styles.marks}>
-                        {marksData.map((data, index) => (
-                            <div key={index}>
-                                <h4>{data.title}</h4>
-                                <p>Total Marks: {data.total_marks}, Marks Obtained: {data.marks_obtained}, Remarks: {data.remarks}</p>
-                            </div>
+            <header className={styles.header}>
+                <h1>Teacher Portal</h1>
+                <button onClick={handleLogout} className={styles.logoutBtn}>Log Out</button>
+            </header>
+            
+            <main className={styles.main}>
+                <section className={styles.studentSelect}>
+                    <h2>Select Student</h2>
+                    <select onChange={(e) => handleUsernameSelect(e.target.value)} className={styles.selectDropdown}>
+                        <option value="">Select a student...</option>
+                        {students.map((student) => (
+                            <option key={student.username} value={student.username}>
+                                {student.name} ({student.username})
+                            </option>
                         ))}
-                    </div>
-                </div>
-            )}
+                    </select>
+                </section>
+
+                {studentProfile && (
+                    <section className={styles.studentProfile}>
+                        <h2>Student Profile</h2>
+                        <div className={styles.profileGrid}>
+                            <div><strong>Name:</strong> {studentProfile.name}</div>
+                            <div><strong>Username:</strong> {studentProfile.username}</div>
+                            <div><strong>Fee Status:</strong> {studentProfile.fees}</div>
+                            <div><strong>Class:</strong> {studentProfile.clas}</div>
+                            <div><strong>Stream:</strong> {studentProfile.stream}</div>
+                            <div><strong>Subjects:</strong> {studentProfile.subjects}</div>
+                            <div><strong>Mobile:</strong> {studentProfile.mobile}</div>
+                            <div><strong>Parent's Mobile:</strong> {studentProfile.par_mobile}</div>
+                            <div><strong>Email:</strong> {studentProfile.email}</div>
+                        </div>
+                    </section>
+                )}
+
+                {userData && (
+                    <section className={styles.attendance}>
+                        <h2>Attendance</h2>
+                        <div className={styles.attendanceGrid}>
+                            {['Chemistry 11', 'Chemistry 12', 'Computer Science 11', 'Computer Science 12'].map((subject, index) => (
+                                <div key={index} className={styles.attendanceCard}>
+                                    <h3>{subject}</h3>
+                                    {userData[Object.keys(userData)[index]] !== "Data not available" ? (
+                                        <>
+                                            <p>Total Classes: {userData[Object.keys(userData)[index]].total_classes}</p>
+                                            <p>Classes Attended: {userData[Object.keys(userData)[index]].classes_attended}</p>
+                                            <p>Absent Days: {userData[Object.keys(userData)[index]].absent_days}</p>
+                                            <p>Absent Dates: {userData[Object.keys(userData)[index]].absent_date}</p>
+                                        </>
+                                    ) : (
+                                        <p>Data not available</p>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {performanceData && (
+                    <section className={styles.performance}>
+                        <h2>Performance</h2>
+                        <div className={styles.performanceGraph}>
+                            <Line options={chartOptions} data={getChartData()} />
+                        </div>
+                        <div className={styles.reportCard}>
+                            <h3>Report Card</h3>
+                            <table className={styles.reportTable}>
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Marks Obtained</th>
+                                        <th>Total Marks</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {performanceData.map((data, index) => (
+                                        <tr key={index}>
+                                            <td>{data.title}</td>
+                                            <td>{data.marks_obtained}</td>
+                                            <td>{data.total_marks}</td>
+                                            <td>{data.remarks}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                )}
+            </main>
         </div>
     );
 };
