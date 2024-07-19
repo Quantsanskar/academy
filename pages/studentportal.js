@@ -55,7 +55,7 @@ const StudentPortal = () => {
     }, [router]);
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.globalReset} ${styles.container}`}>
             <div className={styles.nav}>
                 <div
                     className={`${styles.hamburger} ${hamburgerClass}`}

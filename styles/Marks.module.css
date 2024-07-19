@@ -1,45 +1,159 @@
-/* Marks.css */
+/* Marks.module.css */
 
 .marksContainer {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .reportHeader {
+    background-color: #003366;
+    color: #fff;
     padding: 20px;
-}
-
-.chooseClass {
-    margin-bottom: 20px;
-}
-
-.chooseClass label {
-    margin-right: 10px;
-}
-
-.chooseClass select {
-    padding: 5px;
-}
-
-.marksList {
+    text-align: center;
+  }
+  
+  .reportHeader h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .reportHeader p {
+    margin: 5px 0 0;
+    font-size: 14px;
+  }
+  
+  .marksList {
+    padding: 20px;
     overflow-x: auto;
-}
-
-.marksList table {
+  }
+  
+  .marksList table {
     width: 100%;
     border-collapse: collapse;
-}
-
-.marksList th,
-.marksList td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .marksList th,
+  .marksList td {
+    border: 1px solid #e0e0e0;
+    padding: 12px;
     text-align: left;
-}
-
-.marksList th {
-    background-color: #f2f2f2;
-}
-
-.marksList tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.marksList tr:hover {
-    background-color: #ddd;
-}
+  }
+  
+  .marksList th {
+    background-color: #f4f4f4;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #333;
+  }
+  
+  .marksList tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .marksList tr:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .subjectName {
+    font-weight: 600;
+    color: #003366;
+  }
+  
+  .grade {
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .gradeA { color: #4CAF50; }
+  .gradeB { color: #8BC34A; }
+  .gradeC { color: #FFC107; }
+  .gradeD { color: #FF9800; }
+  .gradeF { color: #F44336; }
+  
+  .totalRow {
+    font-weight: 700;
+    background-color: #e8e8e8 !important;
+  }
+  
+  .reportFooter {
+    padding: 20px;
+    text-align: right;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .teacherSignature {
+    font-style: italic;
+    color: #666;
+  }
+  
+  @media (max-width: 768px) {
+    .marksContainer {
+      margin: 10px;
+      border-radius: 0;
+    }
+  
+    .reportHeader h1 {
+      font-size: 20px;
+    }
+  
+    .reportHeader p {
+      font-size: 12px;
+    }
+  
+    .marksList {
+      padding: 10px;
+    }
+  
+    .marksList table {
+      font-size: 12px;
+    }
+  
+    .marksList th,
+    .marksList td {
+      padding: 8px;
+    }
+  
+    .marksList th {
+      white-space: nowrap;
+    }
+  
+    .subjectName {
+      white-space: nowrap;
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    .reportFooter {
+      padding: 10px;
+    }
+  
+    .teacherSignature {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .marksList table {
+      font-size: 10px;
+    }
+  
+    .marksList th,
+    .marksList td {
+      padding: 6px;
+    }
+  
+    .subjectName {
+      max-width: 80px;
+    }
+  
+    .grade {
+      white-space: nowrap;
+    }
+  }

@@ -1,146 +1,158 @@
-/* Notes.module.css */
-
-.colorScheme {
-    --primary-color: #4CAF50;
-    --secondary-color: #2196F3;
-    --background-color: #f0f2f5;
-    --text-color: #333;
-    --secondary-text-color: #666;
-    --hint-text-color: #888;
-    --border-color: #ddd;
-    --modal-bg-color: rgba(0, 0, 0, 0.7);
-}
-
 .notesContainer {
-    padding: 30px;
-    background-color: var(--background-color);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
     min-height: 100vh;
-    box-sizing: border-box;
 }
 
-.searchBarInput {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--border-color);
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #2c3e50;
+}
+
+.classSelector {
+    display: flex;
+    align-items: center;
+}
+
+.classSelector label {
+    margin-right: 0.5rem;
+    font-weight: bold;
+    color: #34495e;
+}
+
+.select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #bdc3c7;
+    border-radius: 4px;
+    background-color: white;
+    color: #2c3e50;
+}
+
+.message {
+    text-align: center;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.subjectsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.subjectCard {
+    background-color: white;
     border-radius: 8px;
-    font-size: 16px;
-    background-color: #fff;
-    transition: border-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
 }
 
-.searchBarInput:focus {
-    outline: none;
-    border-color: var(--primary-color);
+.subjectCard:hover {
+    transform: translateY(-5px);
 }
 
-.searchHint {
-    margin-top: 10px;
-    color: var(--hint-text-color);
-    font-size: 0.9rem;
-}
-
-.chooseClassSelect {
-    padding: 12px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #fff;
-}
-
-.chooseClassSelect:focus {
-    outline: none;
-    border-color: var(--primary-color);
+.subjectTitle {
+    font-size: 1.5rem;
+    color: #3498db;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 0.5rem;
 }
 
 .notesList {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
+    list-style-type: none;
+    padding: 0;
 }
 
 .noteItem {
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 0.5rem;
 }
 
-.noteItem:hover {
-    transform: translateY(-8px);
-    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15);
+.noteButton {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #ecf0f1;
+    border: none;
+    border-radius: 4px;
+    color: #34495e;
+    font-size: 1rem;
+    text-align: left;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
-.noteItemTitle {
-    margin-top: 0;
-    font-size: 1.7rem;
-    color: var(--text-color);
+.noteButton:hover {
+    background-color: #bdc3c7;
 }
 
-.noteItemSubtitle {
-    margin-top: 10px;
-    color: var(--secondary-text-color);
-    font-size: 1.3rem;
-}
-
-.noteItemText {
-    margin-top: 15px;
-    color: var(--text-color);
-    line-height: 1.6;
-}
-
-.noteItemLink {
-    color: var(--secondary-color);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.noteItemLink:hover {
-    text-decoration: underline;
-}
-
-.noteModal {
+.modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--modal-bg-color);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    padding: 20px;
-    box-sizing: border-box;
 }
 
 .modalContent {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    max-width: 80%;
-    max-height: 80%;
-    overflow: auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
     position: relative;
+    width: 80%;
+    max-width: 900px;
+    height: 80%;
 }
 
 .closeButton {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--hint-text-color);
+    color: #7f8c8d;
 }
 
 .pdfViewer {
-    width: 500px;
-    height: 1000px;
+    width: 100%;
+    height: calc(100% - 2rem);
     border: none;
-    border-radius: 8px;
-    background-color: #000000;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .classSelector {
+        margin-top: 1rem;
+    }
+
+    .subjectsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .modalContent {
+        width: 95%;
+        height: 90%;
+    }
 }

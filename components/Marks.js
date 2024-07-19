@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styles from '../styles/Marks.module.css';
 
 const Marks = () => {
     const [loggedInUsername, setLoggedInUsername] = useState('');
@@ -43,9 +44,32 @@ const Marks = () => {
         }
     };
 
+    const getGradeClass = (marksObtained, totalMarks) => {
+        const percentage = (marksObtained / totalMarks) * 100;
+        if (percentage >= 90) return styles.gradeA;
+        if (percentage >= 80) return styles.gradeB;
+        if (percentage >= 70) return styles.gradeC;
+        if (percentage >= 60) return styles.gradeD;
+        return styles.gradeF;
+    };
+
+    const getGrade = (marksObtained, totalMarks) => {
+        const percentage = (marksObtained / totalMarks) * 100;
+        if (percentage >= 90) return 'A';
+        if (percentage >= 80) return 'B';
+        if (percentage >= 70) return 'C';
+        if (percentage >= 60) return 'D';
+        return 'F';
+    };
+
     return (
-        <div>
-            <div>
+        <div className={styles.marksContainer}>
+            <div className={styles.reportHeader}>
+                <h1>Student Report Card</h1>
+                <p>Academic Year 2023-2024</p>
+            </div>
+
+            <div className={styles.marksList}>
                 {marksData.length > 0 ? (
                     <table>
                         <thead>
@@ -54,16 +78,20 @@ const Marks = () => {
                                 <th>Title</th>
                                 <th>Total Marks</th>
                                 <th>Marks Obtained</th>
+                                <th>Grade</th>
                                 <th>Remarks</th>
                             </tr>
                         </thead>
                         <tbody>
                             {marksData.map((item, index) => (
                                 <tr key={index}>
-                                    <td>{item.subject}</td>
+                                    <td className={styles.subjectName}>{item.subject}</td>
                                     <td>{item.title}</td>
                                     <td>{item.total_marks}</td>
                                     <td>{item.marks_obtained}</td>
+                                    <td className={`${styles.grade} ${getGradeClass(item.marks_obtained, item.total_marks)}`}>
+                                        {getGrade(item.marks_obtained, item.total_marks)}
+                                    </td>
                                     <td>{item.remarks}</td>
                                 </tr>
                             ))}
@@ -72,6 +100,10 @@ const Marks = () => {
                 ) : (
                     <p>No marks data available</p>
                 )}
+            </div>
+
+            <div className={styles.reportFooter}>
+                <p className={styles.teacherSignature}>Signed: Class Teacher</p>
             </div>
         </div>
     );

@@ -34,10 +34,6 @@ const Notes = () => {
         }
     };
 
-    // const handleClassChange = (event) => {
-    //     setSelectedClass(event.target.value);
-    // };
-
     const openNote = (note) => {
         setSelectedNote(note);
     };
@@ -50,50 +46,54 @@ const Notes = () => {
         if (userData && userData.subjects) {
             const filteredSubjects = userData.subjects.split('\r\n');
             const filteredNotesData = filteredSubjects.map((subject) => {
-                // Find the subject object in notesData
                 const subjectData = notesData.find((data) => data.subjects.some((s) => s.name === subject));
                 if (subjectData) {
-                    // Extract the notes for the found subject
                     const notes = subjectData.subjects.find((s) => s.name === subject).chapters.flatMap((chapter) => chapter.notes);
                     return { subject, notes };
                 } else {
-                    return { subject, notes: [] }; // Subject not found in notesData
+                    return { subject, notes: [] };
                 }
             });
             setFilteredNotes(filteredNotesData);
         }
     }, [userData]);
 
-
     return (
         <div className={styles.notesContainer}>
-            <div className={styles.chooseClass}>
-                <label htmlFor="classSelect">Choose a class:</label>
-                <select id="classSelect" value={selectedClass}>
-                    <option value="11">Class 11</option>
-                    <option value="12">Class 12</option>
-                </select>
-                {showChooseClassMsg && <p>Please choose your class.</p>}
-            </div>
+            <header className={styles.header}>
+                <h1 className={styles.title}>Your Study Notes</h1>
+                <div className={styles.classSelector}>
+                    <label htmlFor="classSelect">Class:</label>
+                    <select id="classSelect" value={selectedClass} className={styles.select}>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+            </header>
 
-            <div className={styles.notesList}>
+            {showChooseClassMsg && <p className={styles.message}>Please choose your class.</p>}
+
+            <div className={styles.subjectsGrid}>
                 {filteredNotes.map((subjectData, index) => (
-                    <div key={index}>
-                        <h2>{subjectData.subject}</h2>
-                        {subjectData.notes.map((note, noteIndex) => (
-                            <div key={noteIndex} className={styles.noteItem}>
-                                <h3>{note.title}</h3>
-                                <button onClick={() => openNote(note)}>View PDF</button>
-                            </div>
-                        ))}
+                    <div key={index} className={styles.subjectCard}>
+                        <h2 className={styles.subjectTitle}>{subjectData.subject}</h2>
+                        <ul className={styles.notesList}>
+                            {subjectData.notes.map((note, noteIndex) => (
+                                <li key={noteIndex} className={styles.noteItem}>
+                                    <button onClick={() => openNote(note)} className={styles.noteButton}>
+                                        {note.title}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 ))}
             </div>
 
             {selectedNote && (
-                <div className={styles.noteModal}>
+                <div className={styles.modal}>
                     <div className={styles.modalContent}>
-                        <button className={styles.closeButton} onClick={closeNote}>Close</button>
+                        <button className={styles.closeButton} onClick={closeNote}>&times;</button>
                         <iframe className={styles.pdfViewer} src={selectedNote.filePath} title="Notes PDF"></iframe>
                     </div>
                 </div>
