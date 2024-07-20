@@ -11,7 +11,7 @@ const Chem11marks = () => {
         total_marks: '',
         marks_obtained: '',
         remarks: '',
-        mobile: ''
+        mobile: '',
     });
 
     const handleChange = (e) => {

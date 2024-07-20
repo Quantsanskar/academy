@@ -28,14 +28,26 @@ const AdminPortal = () => {
             case 'uploadChem11marks':
                 router.push('/Chem11marks');
                 break;
+            case 'EditChem11marks':
+                router.push('/EditChem11marks');
+                break;
             case 'uploadChem12marks':
                 router.push('/Chem12marks');
+                break;
+            case 'EditChem12marks':
+                router.push('/EditChem12marks');
                 break;
             case 'uploadCS11marks':
                 router.push('/CS11marks');
                 break;
+            case 'EditCS11marks':
+                router.push('/EditCS11marks');
+                break;
             case 'uploadCS12marks':
                 router.push('/CS12marks');
+                break;
+            case 'EditCS12marks':
+                router.push('/EditCS12marks');
                 break;
             default:
                 break;
@@ -78,6 +90,10 @@ const AdminPortal = () => {
                         <li onClick={() => handleSectionClick('uploadChem12marks')}>Upload Chem12 Marks</li>
                         <li onClick={() => handleSectionClick('uploadCS11marks')}>Upload CS11 Marks</li>
                         <li onClick={() => handleSectionClick('uploadCS12marks')}>Upload CS12 Marks</li>
+                        <li onClick={() => handleSectionClick('EditChem11marks')}>Edit Chem11 Marks</li>
+                        <li onClick={() => handleSectionClick('EditChem12marks')}>Edit Chem12 Marks</li>
+                        <li onClick={() => handleSectionClick('EditCS11marks')}>Edit CS11 Marks</li>
+                        <li onClick={() => handleSectionClick('EditCS12marks')}>Edit CS12 Marks</li>
                         <button onClick={handleLogout}>Log Out</button>
                     </ul>
                 </div>

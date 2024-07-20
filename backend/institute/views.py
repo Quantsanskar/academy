@@ -283,6 +283,22 @@ class MarksChem11ListAPIView(generics.ListCreateAPIView):
     serializer_class = MarksChem11Serializer
     queryset = MarksChem11.objects.all()
 
+    def put(self, request, *args, **kwargs):
+        instance_id = request.data.get('id')
+        if not instance_id:
+            return Response({"error": "No ID provided"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            instance = MarksChem11.objects.get(id=instance_id)
+        except MarksChem11.DoesNotExist:
+            return Response({"error": "Record not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     # def get_queryset(self):
     #     return MarksChem11.objects.all()
 
@@ -303,10 +319,25 @@ class MarksChem11ListAPIView(generics.ListCreateAPIView):
     #     else:
     #         return JsonResponse({"message": "Invalid request method"}, status=405)
 
-
 class MarksChem12ListAPIView(generics.ListCreateAPIView):
     serializer_class = MarksChem12Serializer
     queryset = MarksChem12.objects.all()
+
+    def put(self, request, *args, **kwargs):
+        instance_id = request.data.get('id')
+        if not instance_id:
+            return Response({"error": "No ID provided"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            instance = MarksChem12.objects.get(id=instance_id)
+        except MarksChem12.DoesNotExist:
+            return Response({"error": "Record not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # def get_queryset(self):
     #     return MarksChem12.objects.all()
@@ -328,7 +359,23 @@ class MarksChem12ListAPIView(generics.ListCreateAPIView):
 
 class MarksCS11ListAPIView(generics.ListCreateAPIView):
     serializer_class = MarksCS11Serializer
-    queryset = MarksCS11.objects.all()
+    queryset = MarksChem11.objects.all()
+
+    def put(self, request, *args, **kwargs):
+        instance_id = request.data.get('id')
+        if not instance_id:
+            return Response({"error": "No ID provided"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            instance = MarksCS11.objects.get(id=instance_id)
+        except MarksCS11.DoesNotExist:
+            return Response({"error": "Record not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQS11)
 
     # def get_queryset(self):
     #     return MarksCS11.objects.all()
@@ -352,6 +399,21 @@ class MarksCS12ListAPIView(generics.ListCreateAPIView):
     serializer_class = MarksCS12Serializer
     queryset = MarksCS12.objects.all()
 
+    def put(self, request, *args, **kwargs):
+        instance_id = request.data.get('id')
+        if not instance_id:
+            return Response({"error": "No ID provided"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            instance = MarksCS12.objects.get(id=instance_id)
+        except MarksCS12.DoesNotExist:
+            return Response({"error": "Record not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQS12)
     # def get_queryset(self):
     #     return MarksCS12.objects.all()
 

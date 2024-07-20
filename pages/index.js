@@ -73,7 +73,7 @@ const Index = () => {
                         <span className={styles.hamburgerIcon}></span>
                     </button>
                     <ul className={`${styles.navList} ${menuOpen ? styles.showMenu : ''}`}>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><Link href="/AboutPage">About A&G</Link></li>
                         <li><Link href="/agresults">A&G Results</Link></li>
                         <li className={styles.dropdown}>
