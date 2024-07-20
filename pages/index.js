@@ -52,7 +52,7 @@ const Index = () => {
     }, []);
     const gotosignin = () => {
         if (typeof window !== 'undefined') {
-            window.location.href = "/myfile.html";
+            window.location.href = "/studentlogin.html";
         }
     };
 
@@ -79,7 +79,7 @@ const Index = () => {
                         <li className={styles.dropdown}>
                             <a href="#">Student Zone</a>
                             <div className={styles.dropdownContent}>
-                                <Link href="/myfile.html">Student Portal</Link>
+                                <Link href="/studentlogin.html">Student Portal</Link>
                             </div>
                         </li>
                         <li className={styles.dropdown}>
