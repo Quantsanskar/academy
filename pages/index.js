@@ -100,11 +100,11 @@ const Index = () => {
                                 className={`${styles.slide} ${index === currentImageIndex ? styles.active : ''}`}
                                 style={{ backgroundImage: `url(${image})` }}
                             >
-                                <div className={styles.overlay}>
+                                {/* <div className={styles.overlay}>
                                     <h2>Discover Something Amazing</h2>
                                     <p>Explore our programs and unlock your potential</p>
                                     <button className={styles.exploreButton} onClick={() => router.push('/agresults')}>Explore Now</button>
-                                </div>
+                                </div> */}
                             </div>
                         ))}
                     </div>

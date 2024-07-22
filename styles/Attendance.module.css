@@ -10,7 +10,7 @@
 
 .title {
     text-align: center;
-    color: #f582ae;
+    color: #607cc3;
     margin-bottom: 20px;
     font-size: 2.5em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -40,7 +40,7 @@
 }
 
 .subjectTitle {
-    color: #f582ae;
+    color: #6c92c7;
     border-bottom: 3px dotted #8bd3dd;
     padding-bottom: 5px;
     margin-bottom: 15px;
@@ -68,7 +68,7 @@
 }
 
 .attendanceHeader h3 {
-    color: #f582ae;
+    color: #3c62c3;
     margin: 0;
     font-size: 1.5em;
 }
@@ -90,7 +90,7 @@
 
 .statItem {
     text-align: center;
-    background-color: #f3d2c1;
+    background-color: #c9e4ef;
     padding: 10px;
     border-radius: 10px;
     min-width: 100px;
@@ -106,7 +106,7 @@
 .statValue {
     font-size: 24px;
     font-weight: bold;
-    color: #f582ae;
+    color: #6781ca;
 }
 
 .absentDates {
@@ -127,8 +127,8 @@
 }
 
 .absentDatePacket {
-    background-color: #FFD1DC; /* Light pink */
-    color: #FF69B4; /* Hot pink */
+    background-color: #bae4f7; /* Light pink */
+    color: #5269cd; /* Hot pink */
     padding: 5px 10px;
     border-radius: 15px;
     font-size: 0.9em;
@@ -139,18 +139,10 @@
 
 .absentDatePacket:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 6px rgba(255, 105, 180, 0.3);
+    box-shadow: 0 4px 6px rgba(117, 172, 221, 0.3);
 }
 
-.absentDateBubble {
-    background-color: #fef6e4;
-    color: #f582ae;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 14px;
-    display: inline-block;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+
 
 
 
