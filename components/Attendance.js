@@ -54,7 +54,7 @@ const Attendance = () => {
                 {
                     label: 'Attendance',
                     data: [data.classes_attended, data.absent_days],
-                    backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)'],
+                    backgroundColor: ['rgba(75, 192, 192, 0.9)', 'rgba(228, 43, 43, 0.9)'],
                     borderColor: ['rgb(75, 192, 192)', 'rgb(255, 99, 132)'],
                     borderWidth: 1,
                 },

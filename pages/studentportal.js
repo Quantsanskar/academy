@@ -123,10 +123,10 @@ const StudentPortal = () => {
                 )}
                 {selectedSection && (
                     <div className={styles.sectionContent}>
-                        <h2>
+                        {/* <h2>
                             {selectedSection.charAt(0).toUpperCase() +
                                 selectedSection.slice(1)}
-                        </h2>
+                        </h2> */}
                         {selectedSection === 'lectures' && (
                             <Lectures filteredLectures={filteredLectures} />
                         )}

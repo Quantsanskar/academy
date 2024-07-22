@@ -1,23 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 
 .container {
-    font-family: 'Bubblegum Sans', cursive;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serifsans-serif,'Bubblegum Sans', cursive;
     background-color: #f2bfd8;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+   
 }
 
 .nav {
     background-color: rgb(93, 93, 242);
     color: #ffffff;
+    width: 100%;
+    left: 0;
     padding: 1rem;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-bottom: 4px solid #8bd3dd;
 }
+
 
 .navList {
     list-style-type: none;
@@ -26,6 +30,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    
 }
 
 .navItem {
@@ -36,6 +41,7 @@
     border-radius: 20px;
     display: flex;
     align-items: center;
+    
 }
 
 .navItem:hover {
@@ -59,7 +65,9 @@
     justify-content: center;
     align-items: center;
     z-index: 999;
+    margin-top: 20px;
     transition: left 0.3s ease-in-out;
+    
 }
 
 .navPanel.open {
@@ -91,6 +99,7 @@
     padding: 2rem;
     background-color: #fef6e4;
     overflow-y: auto;
+    
 }
 
 .sectionContent {
@@ -101,6 +110,7 @@
     margin-bottom: 2rem;
     transition: all 0.3s;
     border: 4px solid #8bd3dd;
+    margin-top: 10vh;
 }
 
 .sectionContent:hover {
@@ -158,7 +168,7 @@
 }
 
 .logout {
-    background-color: #ff8fab;
+    background-color: #36408b;
     color: #ffffff;
     padding: 0.5rem 1rem;
     border: none;
@@ -168,12 +178,12 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-family: 'Bubblegum Sans', cursive;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif,'Bubblegum Sans', cursive;
     font-size: 1rem;
 }
 
 .logout:hover {
-    background-color: #f582ae;
+    background-color: #010a3c;
     /* transform: translateY(-2px) rotate(2deg); */
 }
 

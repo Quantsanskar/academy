@@ -16,7 +16,7 @@
 
 .header h1 {
     font-size: 2.5rem;
-    color: #FF69B4;
+    color: #6999ff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -36,7 +36,7 @@
     padding: 12px 15px;
     font-size: 1rem;
     text-align: left;
-    background-color: #FFB6C1;
+    background-color: #9eafd6;
     border: none;
     border-radius: 20px;
     cursor: pointer;
@@ -45,7 +45,7 @@
 }
 
 .subjectButton:hover, .subjectButton.active {
-    background-color: #FF69B4;
+    background-color: #3e4cce;
     color: white;
     /* transform: translateY(-3px); */
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
@@ -75,11 +75,11 @@
 .lectureItem h3 {
     font-size: 1.3rem;
     margin-bottom: 15px;
-    color: #FF1493;
+    color: #2b14ff;
 }
 
 .lectureItem button {
-    background-color: #FF69B4;
+    background-color: #a89ff4;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -91,7 +91,7 @@
 }
 
 .lectureItem button:hover {
-    background-color: #FF1493;
+    background-color: #4a23d9;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(255, 20, 147, 0.3);
 }
@@ -102,7 +102,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 182, 193, 0.9);
+    background-color: rgba(125, 193, 183, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,12 +126,12 @@
     cursor: pointer;
     background: none;
     border: none;
-    color: #FF1493;
+    color: #ff1414;
     transition: all 0.3s ease;
 }
 
 .closeButton:hover {
-    color: #FF69B4;
+    color: #5c0606;
     transform: scale(1.1) rotate(90deg);
 }
 
