@@ -92,13 +92,12 @@ const StudentPortal = () => {
                     <span></span>
                 </div>
                 <ul className={styles.navList}>
-                    <li onClick={() => handleSectionClick('notes')}>Notes</li>
-                    <li onClick={() => handleSectionClick('lectures')}>Lectures</li>
-                    <li onClick={() => handleSectionClick('tests')}>Tests</li>
-                    <li onClick={() => handleSectionClick('attendance')}>Attendance</li>
-                    <li onClick={() => handleSectionClick('marks')}>Marks</li>
-                    <li onClick={() => handleSectionClick('pyqs')}>PYQs</li>
-                    <li onClick={() => handleSectionClick('performance')}>Performance</li>
+                    {['notes', 'lectures', 'tests', 'attendance', 'marks', 'pyqs', 'performance'].map((item) => (
+                        <li key={item} onClick={() => handleSectionClick(item)} className={styles.navItem}>
+                            <span className={styles.navIcon}>{getNavIcon(item)}</span>
+                            {item.charAt(0).toUpperCase() + item.slice(1)}
+                        </li>
+                    ))}
                     <li><button onClick={handleLogout} className={styles.logout}>Log Out</button></li>
                 </ul>
             </div>
@@ -106,13 +105,12 @@ const StudentPortal = () => {
                 className={`${styles.navPanel} ${isNavOpen ? styles.open : ''}`}
             >
                 <ul>
-                    <li onClick={() => handleSectionClick('notes')}>Notes</li>
-                    <li onClick={() => handleSectionClick('lectures')}>Lectures</li>
-                    <li onClick={() => handleSectionClick('tests')}>Tests</li>
-                    <li onClick={() => handleSectionClick('attendance')}>Attendance</li>
-                    <li onClick={() => handleSectionClick('marks')}>Marks</li>
-                    <li onClick={() => handleSectionClick('pyqs')}>PYQs</li>
-                    <li onClick={() => handleSectionClick('performance')}>Performance</li>
+                    {['notes', 'lectures', 'tests', 'attendance', 'marks', 'pyqs', 'performance'].map((item) => (
+                        <li key={item} onClick={() => handleSectionClick(item)} className={styles.navItem}>
+                            <span className={styles.navIcon}>{getNavIcon(item)}</span>
+                            {item.charAt(0).toUpperCase() + item.slice(1)}
+                        </li>
+                    ))}
                     <li><button onClick={handleLogout} className={styles.logout}>Log Out</button></li>
                 </ul>
             </div>
@@ -145,6 +143,19 @@ const StudentPortal = () => {
             </div>
         </div>
     );
+};
+
+const getNavIcon = (item) => {
+    const icons = {
+        notes: '📝',
+        lectures: '🎓',
+        tests: '✍️',
+        attendance: '📅',
+        marks: '🏆',
+        pyqs: '📚',
+        performance: '📊'
+    };
+    return icons[item] || '📌';
 };
 
 export default StudentPortal;

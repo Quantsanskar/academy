@@ -1,4 +1,5 @@
-from django.urls import path
+from django.urls import path,include
+from rest_framework.routers import DefaultRouter
 from .views import (
     UserListAPIView,
     AdminListAPIView,
@@ -14,8 +15,12 @@ from .views import (
     MarksChem12ListAPIView,
     MarksCS11ListAPIView,
     MarksCS12ListAPIView,
+    LectureViewSet,
 )
 
+# Create a router and register the LecturesViewSet
+router = DefaultRouter()
+router.register(r'lectures', LectureViewSet, basename='lectures')
 
 urlpatterns = [
     path("user", UserListAPIView.as_view(), name="user"),
@@ -40,4 +45,8 @@ urlpatterns = [
     path("markscs12", MarksCS12ListAPIView.as_view(), name="MarksCS12"),
     path("send-sms-request/", SendSMSView.as_view(), name="send_sms"),
     path("send-email/", SendEmailView.as_view(), name="send-email"),
+
+
+      # Include the router URLs
+    path('', include(router.urls)),
 ]

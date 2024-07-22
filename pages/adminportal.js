@@ -49,6 +49,9 @@ const AdminPortal = () => {
             case 'EditCS12marks':
                 router.push('/EditCS12marks');
                 break;
+            case 'LectureManagement':
+                router.push('/LectureManagement');
+                break;
             default:
                 break;
         }
@@ -94,6 +97,7 @@ const AdminPortal = () => {
                         <li onClick={() => handleSectionClick('EditChem12marks')}>Edit Chem12 Marks</li>
                         <li onClick={() => handleSectionClick('EditCS11marks')}>Edit CS11 Marks</li>
                         <li onClick={() => handleSectionClick('EditCS12marks')}>Edit CS12 Marks</li>
+                        <li onClick={() => handleSectionClick('LectureManagement')}>Manage Lectures</li>
                         <button onClick={handleLogout}>Log Out</button>
                     </ul>
                 </div>

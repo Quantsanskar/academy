@@ -1,39 +1,69 @@
 // Lectures.js
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from '../styles/Lectures.module.css';
-import lectureData from '../data/lectureData';
+
+const API_BASE_URL = 'http://127.0.0.1:8000/api';
 
 const Lectures = () => {
     const [filteredLectures, setFilteredLectures] = useState([]);
-    const [selectedClass, setSelectedClass] = useState('');
-    const [showChooseClassMsg, setShowChooseClassMsg] = useState(true);
     const [selectedLecture, setSelectedLecture] = useState(null);
     const [userData, setUserData] = useState(null);
     const [activeSubject, setActiveSubject] = useState(null);
+    const [allLectures, setAllLectures] = useState([]);
 
     useEffect(() => {
         fetchUserData();
     }, []);
 
+    useEffect(() => {
+        if (userData) {
+            fetchAllLectures();
+        }
+    }, [userData]);
+
     const fetchUserData = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/student');
-            if (!response.ok) {
-                throw new Error('Failed to fetch user data');
-            }
-            const data = await response.json();
             const loggedInUsername = localStorage.getItem('username');
-            const loggedInUser = data.find(user => user.username === loggedInUsername);
-            if (loggedInUser) {
-                setUserData(loggedInUser);
-                setSelectedClass(loggedInUser.clas);
-                setShowChooseClassMsg(false);
+            const response = await axios.get(`${API_BASE_URL}/student`);
+            const allStudentsData = response.data;
+            const userData = allStudentsData.find(student => student.username === loggedInUsername);
+            
+            if (userData) {
+                setUserData(userData);
             } else {
                 console.log('Logged-in user data not found.');
             }
         } catch (error) {
             console.error('Error fetching user data:', error.message);
         }
+    };
+
+    const fetchAllLectures = async () => {
+        try {
+            const response = await axios.get(`${API_BASE_URL}/lectures/`);
+            setAllLectures(response.data);
+            filterLectures(response.data);
+        } catch (error) {
+            console.error('Error fetching lectures data:', error.message);
+        }
+    };
+
+    const filterLectures = (lectures) => {
+        if (!userData || !userData.subjects || lectures.length === 0) return;
+
+        const userSubjects = userData.subjects.split('\r\n');
+        const userClass = userData.clas;
+
+        const filteredLecturesData = userSubjects.map(subject => {
+            const subjectLectures = lectures.filter(lecture =>
+                lecture.subject === subject && lecture.class_name === userClass
+            );
+            return { subject, lectures: subjectLectures };
+        });
+
+        setFilteredLectures(filteredLecturesData);
+        setActiveSubject(filteredLecturesData[0]?.subject);
     };
 
     const openLecture = (lecture) => {
@@ -44,34 +74,10 @@ const Lectures = () => {
         setSelectedLecture(null);
     };
 
-    useEffect(() => {
-        if (userData && userData.subjects) {
-            const filteredSubjects = userData.subjects.split('\r\n');
-            const filteredLecturesData = filteredSubjects.map((subject) => {
-                const subjectData = lectureData.find((data) => data.subjects.some((s) => s.name === subject));
-                if (subjectData) {
-                    const lectures = subjectData.subjects.find((s) => s.name === subject).chapters.flatMap((chapter) => chapter.lectures);
-                    return { subject, lectures };
-                } else {
-                    return { subject, lectures: [] };
-                }
-            });
-            setFilteredLectures(filteredLecturesData);
-            setActiveSubject(filteredLecturesData[0]?.subject);
-        }
-    }, [userData]);
-
     return (
         <div className={styles.lecturesContainer}>
             <header className={styles.header}>
-                <h1>My Lectures</h1>
-                <div className={styles.classSelector}>
-                    <select value={selectedClass} onChange={(e) => setSelectedClass(e.target.value)}>
-                        <option value="">Select Class</option>
-                        <option value="11">Class 11</option>
-                        <option value="12">Class 12</option>
-                    </select>
-                </div>
+                <h1>My Lectures <span className={styles.emoji}>📚✨</span></h1>
             </header>
 
             <main className={styles.mainContent}>
@@ -82,7 +88,7 @@ const Lectures = () => {
                             className={`${styles.subjectButton} ${activeSubject === subjectData.subject ? styles.active : ''}`}
                             onClick={() => setActiveSubject(subjectData.subject)}
                         >
-                            {subjectData.subject}
+                            {subjectData.subject} <span className={styles.emoji}>📚</span>
                         </button>
                     ))}
                 </nav>
@@ -90,22 +96,31 @@ const Lectures = () => {
                 <section className={styles.lecturesList}>
                     {filteredLectures.find(s => s.subject === activeSubject)?.lectures.map((lecture, lectureIndex) => (
                         <div key={lectureIndex} className={styles.lectureItem}>
-                            <h3>{lecture.title}</h3>
-                            <button onClick={() => openLecture(lecture)}>Watch Video</button>
+                            <h3>{lecture.title} <span className={styles.emoji}>🎓</span></h3>
+                            <p>Chapter: {lecture.chapter} <span className={styles.emoji}>📖</span></p>
+                            <button onClick={() => openLecture(lecture)}>
+                                Watch Video <span className={styles.emoji}>🎥</span>
+                            </button>
                         </div>
                     ))}
                 </section>
             </main>
 
             {selectedLecture && (
-                <div className={styles.lectureModal}>
-                    <div className={styles.modalContent}>
+                <div className={styles.lectureModal} onClick={closeLecture}>
+                    <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
                         <button className={styles.closeButton} onClick={closeLecture}>×</button>
-                        <h2>{selectedLecture.title}</h2>
-                        <video className={styles.videoPlayer} controls controlsList='nodownload'>
-                            <source src={selectedLecture.videoUrl} type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
+                        <h2>{selectedLecture.title} <span className={styles.emoji}>🌟</span></h2>
+                        <div className={styles.videoPlayerContainer}>
+                            <video
+                                src={selectedLecture.video}
+                                controls
+                                width="100%"
+                                height="100%"
+                            >
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                     </div>
                 </div>
             )}

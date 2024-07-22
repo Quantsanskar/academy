@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render
 from django.http import JsonResponse
-
+from rest_framework import viewsets
 # from h11 import Response
 from rest_framework import generics, response, status
 from rest_framework.views import APIView
@@ -24,6 +24,7 @@ from .models import (
     MarksChem12,
     MarksCS11,
     MarksCS12,
+    Lecture,
 )
 from .serializers import (
     UserSerializer,
@@ -38,6 +39,7 @@ from .serializers import (
     MarksChem12Serializer,
     MarksCS11Serializer,
     MarksCS12Serializer,
+    LectureSerializer,
 )
 
 from django.views.decorators.csrf import csrf_exempt
@@ -430,3 +432,9 @@ class MarksCS12ListAPIView(generics.ListCreateAPIView):
     #         return JsonResponse({"message": "Student not found"}, status=404)
     #     else:
     #         return JsonResponse({"message": "Invalid request method"}, status=405)
+
+
+
+class LectureViewSet(viewsets.ModelViewSet):
+    queryset = Lecture.objects.all()
+    serializer_class = LectureSerializer

@@ -135,3 +135,14 @@ class MarksCS12(models.Model):
     marks_obtained = models.CharField(max_length=56, null=False, default="unknown")
     remarks = models.CharField(max_length=56, null=False, default="unknown")
     mobile = models.CharField(max_length=13, null=False, default="+91")
+
+
+class Lecture(models.Model):
+    title = models.CharField(max_length=200)
+    subject = models.CharField(max_length=100)
+    chapter = models.CharField(max_length=100)
+    class_name = models.CharField(max_length=10)
+    video = models.FileField(upload_to='lectures/', null=True, blank=True)
+    
+    def __str__(self):
+        return self.title

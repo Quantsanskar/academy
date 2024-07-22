@@ -2,30 +2,37 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #fef6e4;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .title {
     text-align: center;
-    color: #333;
+    color: #f582ae;
     margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .userInfo {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 8px;
+    background-color: #8bd3dd;
+    padding: 15px;
+    border-radius: 15px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .userInfo p {
     margin: 0;
-    font-size: 16px;
+    font-size: 18px;
+    color: #ffffff;
 }
 
 .userInfo span {
     font-weight: bold;
-    color: #4a4a4a;
+    color: #f3d2c1;
 }
 
 .subjectSection {
@@ -33,24 +40,25 @@
 }
 
 .subjectTitle {
-    color: #2c3e50;
-    border-bottom: 2px solid #3498db;
+    color: #f582ae;
+    border-bottom: 3px dotted #8bd3dd;
     padding-bottom: 5px;
     margin-bottom: 15px;
+    font-size: 1.8em;
 }
 
 .attendanceCard {
     background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-bottom: 15px;
-    transition: transform 0.2s ease-in-out;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
 }
 
-.attendanceCard:hover {
-    transform: translateY(-5px);
-}
+/* .attendanceCard:hover {
+    transform: translateY(-5px) rotate(1deg);
+} */
 
 .attendanceHeader {
     display: flex;
@@ -60,63 +68,105 @@
 }
 
 .attendanceHeader h3 {
-    color: #3498db;
+    color: #f582ae;
     margin: 0;
+    font-size: 1.5em;
 }
 
 .mobile {
-    color: #7f8c8d;
-    font-size: 14px;
+    color: #8bd3dd;
+    font-size: 16px;
+}
+
+.chartContainer {
+    margin-bottom: 20px;
 }
 
 .attendanceStats {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
+    justify-content: space-around;
+    margin-bottom: 20px;
 }
 
 .statItem {
     text-align: center;
-    flex: 1;
+    background-color: #f3d2c1;
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 100px;
 }
 
 .statLabel {
     display: block;
     font-size: 14px;
-    color: #7f8c8d;
+    color: #001858;
     margin-bottom: 5px;
 }
 
 .statValue {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
-    color: #2c3e50;
+    color: #f582ae;
 }
 
 .absentDates {
-    font-size: 14px;
-    color: #7f8c8d;
+    margin-top: 20px;
 }
 
 .absentLabel {
     font-weight: bold;
-    margin-right: 5px;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+    display: block;
 }
 
-.absentValue {
-    color: #e74c3c;
+.absentDatesList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
+
+.absentDatePacket {
+    background-color: #FFD1DC; /* Light pink */
+    color: #FF69B4; /* Hot pink */
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(255, 105, 180, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.absentDatePacket:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(255, 105, 180, 0.3);
+}
+
+.absentDateBubble {
+    background-color: #fef6e4;
+    color: #f582ae;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
 
 @media (max-width: 768px) {
     .attendanceContainer {
-        padding: 10px;
+        padding: 15px;
     }
 
     .attendanceStats {
         flex-direction: column;
+        align-items: center;
     }
 
     .statItem {
         margin-bottom: 10px;
+        width: 80%;
     }
 }

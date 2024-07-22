@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import styles from '../styles/Attendance.module.css';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Attendance = () => {
     const [attendanceData, setAttendanceData] = useState({});
@@ -42,6 +46,35 @@ const Attendance = () => {
         }
     };
 
+    const getChartData = (subject) => {
+        const data = attendanceData[subject][0];
+        return {
+            labels: ['Classes Attended', 'Absent Days'],
+            datasets: [
+                {
+                    label: 'Attendance',
+                    data: [data.classes_attended, data.absent_days],
+                    backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)'],
+                    borderColor: ['rgb(75, 192, 192)', 'rgb(255, 99, 132)'],
+                    borderWidth: 1,
+                },
+            ],
+        };
+    };
+
+    const chartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Attendance Overview',
+            },
+        },
+    };
+
     return (
         <div className={styles.attendanceContainer}>
             <h1 className={styles.title}>Attendance Report</h1>
@@ -50,12 +83,15 @@ const Attendance = () => {
             </div>
             {Object.entries(attendanceData).map(([subject, data]) => (
                 <div key={subject} className={styles.subjectSection}>
-                    <h2 className={styles.subjectTitle}>{subject}</h2>
+                    {/* <h2 className={styles.subjectTitle}>{subject}</h2> */}
                     {data.map((record, index) => (
                         <div key={index} className={styles.attendanceCard}>
                             <div className={styles.attendanceHeader}>
                                 <h3>{record.subject}</h3>
                                 <p className={styles.mobile}>Mobile: {record.mobile}</p>
+                            </div>
+                            <div className={styles.chartContainer}>
+                                <Bar data={getChartData(subject)} options={chartOptions} />
                             </div>
                             <div className={styles.attendanceStats}>
                                 <div className={styles.statItem}>
@@ -73,7 +109,11 @@ const Attendance = () => {
                             </div>
                             <div className={styles.absentDates}>
                                 <span className={styles.absentLabel}>Absent Dates:</span>
-                                <span className={styles.absentValue}>{record.absent_date}</span>
+                                <div className={styles.absentDatesList}>
+                                    {record.absent_date.split(',').map((date, i) => (
+                                        <span key={i} className={styles.absentDatePacket}>{date.trim()}</span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     ))}

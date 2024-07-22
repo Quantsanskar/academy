@@ -12,6 +12,7 @@ from .models import (
     MarksChem12,
     MarksCS11,
     MarksCS12,
+    Lecture,
 )
 
 
@@ -121,3 +122,11 @@ class MarksCS12Serializer(serializers.ModelSerializer):
             setattr(instance, attr, value)
         instance.save()
         return instance
+
+
+
+
+class LectureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lecture
+        fields = ['id', 'title', 'subject', 'chapter', 'class_name', 'video']
