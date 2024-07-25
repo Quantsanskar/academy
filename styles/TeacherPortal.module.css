@@ -1,7 +1,7 @@
 .container {
     font-family: 'Arial', sans-serif;
     color: #333;
-    background-color: #f5f5f5;
+    background-color: #e6f2ff;
     min-height: 100vh;
 }
 
@@ -12,25 +12,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .header h1 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .logoutBtn {
-    background-color: #e74c3c;
+    background-color: #ff6b6b;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .logoutBtn:hover {
-    background-color: #c0392b;
+    background-color: #ff4757;
+    transform: scale(1.05);
 }
 
 .main {
@@ -41,22 +46,39 @@
 
 .studentSelect {
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .selectDropdown {
     width: 100%;
-    padding: 0.5rem;
+    max-width: 400px;
+    padding: 0.75rem;
     font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 2px solid #4a90e2;
+    border-radius: 20px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.selectDropdown:hover, .selectDropdown:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
 }
 
 .studentProfile, .attendance, .performance {
     background-color: white;
-    border-radius: 8px;
+    border-radius: 15px;
     padding: 1.5rem;
     margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.studentProfile:hover, .attendance:hover, .performance:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .profileGrid, .attendanceGrid {
@@ -65,36 +87,139 @@
     gap: 1rem;
 }
 
-.attendanceCard {
-    background-color: #f9f9f9;
+.profileCard, .attendanceCard {
+    background-color: #f0f8ff;
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+}
+
+.profileCard:hover, .attendanceCard:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.pieChartContainer {
+    max-width: 200px;
+    margin: 0 auto 1rem;
 }
 
 .performanceGraph {
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
 }
 
+.performanceGraph::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.2) 40%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(-45deg);
+    animation: shimmer 3s infinite;
+    z-index: 1;
+}
+
+.performanceGraph:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) rotate(-45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(-45deg);
+    }
+}
 .reportCard {
-    background-color: #f9f9f9;
+    background-color: #f0f8ff;
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .reportTable {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 8px;
 }
 
 .reportTable th, .reportTable td {
-    padding: 0.5rem;
+    padding: 0.75rem;
     text-align: left;
-    border-bottom: 1px solid #ddd;
 }
 
 .reportTable th {
     background-color: #4a90e2;
     color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+.reportTable tr:nth-child(even) {
+    background-color: #e6f2ff;
+}
+
+.reportTable tr:hover {
+    background-color: #d9eaff;
+}
+
+.sectionHeading {
+    color: #4a90e2;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.subHeading {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.attendanceCard .subHeading {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.attendanceCard p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+
+
+.reportCard .subHeading {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.profileCard strong, .attendanceCard strong {
+    color: #4a90e2;
+}
+
+.selectDropdown option {
+    padding: 0.5rem;
+}
+
+.pieChartContainer canvas {
+    margin: 0 auto;
 }
 
 @media (max-width: 768px) {
@@ -110,4 +235,28 @@
     .profileGrid, .attendanceGrid {
         grid-template-columns: 1fr;
     }
+}
+
+
+.absentDatesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.absentDate {
+    background-color: #ffcccb;
+    color: #d63031;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.absentDate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }

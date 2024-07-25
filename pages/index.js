@@ -155,7 +155,14 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
-
+                {/* Student's Journey */}
+                <div className={styles.studentJourney}>
+                    {/* <div className={styles.journeyImage}></div> */}
+                    <div className={styles.slogan}>
+                        <p>Your all concerns are solved at <span>A&G</span></p>
+                        <div className={styles.gradientLine}></div>
+                    </div>
+                </div>
                 {/* Our Programs Section */}
                 <div className={styles.programsSection}>
                     <div className={styles.programsHeadingContainer}>
@@ -171,14 +178,7 @@ const Index = () => {
                     </div>
                 </div>
 
-                {/* Student's Journey */}
-                <div className={styles.studentJourney}>
-                    <div className={styles.journeyImage}></div>
-                    <div className={styles.slogan}>
-                        <p>Your all concerns are solved at <span>A&G</span></p>
-                        <div className={styles.gradientLine}></div>
-                    </div>
-                </div>
+
 
                 {/* Our Trailblazers */}
                 <div className={styles.trailBlazersSection}>

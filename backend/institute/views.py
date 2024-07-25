@@ -361,7 +361,7 @@ class MarksChem12ListAPIView(generics.ListCreateAPIView):
 
 class MarksCS11ListAPIView(generics.ListCreateAPIView):
     serializer_class = MarksCS11Serializer
-    queryset = MarksChem11.objects.all()
+    queryset = MarksCS11.objects.all()
 
     def put(self, request, *args, **kwargs):
         instance_id = request.data.get('id')
